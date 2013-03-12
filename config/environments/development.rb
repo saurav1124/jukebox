@@ -34,4 +34,15 @@ Jukebox::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  APP_CONFIG = YAML.load_file("#{Rails.root}/config/config.yml")[Rails.env]
+
+  # AWS::S3::Base.establish_connection!(:access_key_id => "123",
+                                    # :secret_access_key => "abc",
+                                    # :server => "localhost",
+                                    # :port => "10001")
+
+
 end

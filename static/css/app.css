@@ -1,0 +1,31 @@
+body {
+  padding-top: 76px;
+}
+.pl {
+  display: block;
+  background-color: #D4D5D5;
+  padding: 10px 20px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-bottom: 1px solid #AAAAAA;
+}
+.pl .ctls {
+  display: table;
+}
+.pl .ctls > div {
+  display: table-cell;
+  padding: 10px 10px 10px 0;
+}
+.pl .ctls > div:first-child {
+  padding-left: 10px;
+}
+.pl .ctls .bt {
+  background-color: #EEEEEE;
+  border-radius: 30px;
+  padding: 10px 10px 12px 10px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.4), inset 1px 1px 1px rgba(255,255,255,0.7);
+}
+.mp {
+  display: block;
+  background-color: #B4B5B5;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4), inset 1px 1px 1px rgba(255,255,255,0.4);
+}

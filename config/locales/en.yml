@@ -2,4 +2,18 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  title: "Miliea"
+  label:
+    get_prod: Get Miliea
+    find: Find
+    search: Search
+    log_in: Log In
+    features: Features
+    plans: Plans
+  txt:
+    slogan: "Music. Melody. Moment."
+    caption: "What's on your mind? Let us play it for you ..."
+    search_prompt: "e.g. Latest, Top 10, Kishore, Aashiq ..."
+  errors:
+    photo_too_large: "Selected photo is too large (max %{size})"
+    file_invalid_format: "Invalid file format. (%{formats})"

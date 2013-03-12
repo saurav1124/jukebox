@@ -1,0 +1,11 @@
+development:
+  cdn_base_url: http://cn:3000/static
+
+test:
+  cdn_base_url: http://cn/wkt/static  
+
+staging:
+  cdn_base_url: http://staging/static
+
+production:
+  cdn_base_url: http://production/static

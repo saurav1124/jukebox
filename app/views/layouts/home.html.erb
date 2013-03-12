@@ -1,0 +1,7 @@
+<% content_for :topbar do %>
+<%= render "pages/home_tb" %>
+<% end %>
+<% content_for :content do %>
+<%= yield %>
+<% end %>
+<%= render :file => 'layouts/application' %>

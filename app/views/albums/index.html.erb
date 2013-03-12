@@ -1,0 +1,12 @@
+<div class="mp" style="height:600px;">
+  <%= render "shared/top_player.html.erb", :show => false %>
+  <a id="play" href="#" class="btn">Play</a>
+</div>
+<script>
+$(document).ready(function() {
+  $("#play").click(function() {
+    $(".pl").slideDown();
+    return false;
+  });
+});
+</script>

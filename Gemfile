@@ -11,6 +11,8 @@ gem 'aws-sdk'
 gem "useragent"
 gem "devise"
 
+gem 'paperclip'
+
 gem 'sunspot_rails'
 
 # To use debugger

@@ -2,9 +2,8 @@ class Track < ActiveRecord::Base
 
   include ModelHelper
 
-  attr_accessible :title, :artist_id, :album_id, :album_index, :play_length,
-                  :released_d, :released_m, :released_y, :released_dt,
-                  :rating
+  attr_accessible :title, :artist_id, :album_id, :album_index, :track_length,
+                  :year, :released_dt, :rating
 
   belongs_to      :artist
   belongs_to      :album
@@ -16,11 +15,13 @@ class Track < ActiveRecord::Base
                                               :album_index,
                                               :play_length
                                              ] do
+    text      :uqid,              :as => "uqid"
+    text      :url,               :as => "url"
     text      :title,             :as => "name"
     text      :artist_name,       :as => "artist_name"
     text      :album_name,        :as => "album_name"
     text      :genre,             :as => "genre"
-    integer   :released_y,        :as => "year"
+    integer   :year,              :as => "year"
     date      :created_at,        :as => "created_at"
     text      :artwork_url,       :as => "artwork"
   end
@@ -42,7 +43,7 @@ class Track < ActiveRecord::Base
   end
 
   def artwork_url
-    self.artwork ? self.artwork.urll : ""
+    self.artwork ? self.artwork.urll : Artwork.new.urll
   end
 
 private

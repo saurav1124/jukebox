@@ -65,7 +65,7 @@
 
  <fields>
    <!-- Valid attributes for fields:
-     name: mandatory - the name for the field
+     name: mandatory - the name for the field.
      type: mandatory - the name of a field type from the 
        <types> fieldType section
      indexed: true if this field should be indexed (searchable or sortable)
@@ -101,6 +101,8 @@
    <field name="type" type="text_general" indexed="true" stored="true" multiValued="true"/>
    <field name="class_name" type="text_general" indexed="true" stored="true"/>
    <field name="name" type="text_general" indexed="true" stored="true"/>
+   <field name="uqid" type="text_general" indexed="false" stored="true"/>
+   <field name="url" type="text_general" indexed="false" stored="true"/>
    <field name="album_name" type="text_general" indexed="true" stored="true"/>
    <field name="artist_name" type="text_general" indexed="true" stored="true"/>
    <field name="genre" type="text_general" indexed="true" stored="true"/>

@@ -1,11 +1,19 @@
 development:
   cdn_base_url: http://cn:3000/static
+  artwork_base_url: http://cn:3000/artwork
+  artwork_folder_path: /home/saurav/dev/data/artworks
 
 test:
   cdn_base_url: http://cn/wkt/static  
+  artwork_base_url: http://cn:3000/artwork
+  artwork_folder_path: /home/saurav/dev/data/artworks
 
 staging:
   cdn_base_url: http://staging/static
+  artwork_base_url: http://cn:3000/artwork
+  artwork_folder_path: /home/saurav/dev/data/artworks
 
 production:
   cdn_base_url: http://production/static
+  artwork_base_url: http://cn:3000/artwork
+  artwork_folder_path: /home/saurav/dev/data/artworks

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130311143337) do
+ActiveRecord::Schema.define(:version => 20130312180643) do
 
   create_table "albums", :force => true do |t|
     t.string   "name",        :limit => 512,                  :null => false
@@ -60,29 +60,32 @@ ActiveRecord::Schema.define(:version => 20130311143337) do
     t.datetime "photo_updated_at"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.text     "artwork_data"
   end
 
   create_table "tracks", :force => true do |t|
-    t.string   "title",       :limit => 512,                :null => false
-    t.string   "url",         :limit => 256,                :null => false
+    t.string   "title",        :limit => 512,                :null => false
+    t.string   "url",          :limit => 256,                :null => false
     t.integer  "artist_id"
     t.integer  "album_id"
-    t.integer  "album_index",                :default => 1, :null => false
-    t.float    "play_length",                               :null => false
-    t.integer  "released_d"
-    t.integer  "released_m"
-    t.integer  "released_y"
+    t.integer  "album_index",                 :default => 1, :null => false
     t.datetime "release_dt"
-    t.float    "rating",                                    :null => false
+    t.float    "rating",                                     :null => false
     t.integer  "artwork_id"
     t.string   "genre"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "uqid",        :limit => 128,                :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "uqid",         :limit => 128,                :null => false
+    t.integer  "year"
+    t.integer  "track_no"
+    t.integer  "track_length"
+    t.integer  "composer_id"
   end
 
   add_index "tracks", ["album_id", "album_index"], :name => "index_tracks_on_album_id_and_album_index"
   add_index "tracks", ["album_id", "title"], :name => "index_tracks_on_album_id_and_title", :length => {"album_id"=>nil, "title"=>255}
+  add_index "tracks", ["album_id", "track_no"], :name => "index_tracks_on_album_id_and_track_no"
+  add_index "tracks", ["album_id"], :name => "index_tracks_on_album_id_and_track_length"
   add_index "tracks", ["artist_id", "title"], :name => "index_tracks_on_artist_id_and_title", :length => {"artist_id"=>nil, "title"=>255}
   add_index "tracks", ["title"], :name => "index_tracks_on_title", :length => {"title"=>255}
   add_index "tracks", ["uqid"], :name => "index_tracks_on_uqid", :unique => true

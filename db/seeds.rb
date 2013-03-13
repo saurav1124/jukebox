@@ -23,6 +23,6 @@ if !Rails.env.production?
       artist = Artist.new(:name => row[2].strip)
       artist.save!
     end
-    Track.create(:title => row[0].strip, :artist_id => artist.id, :album_id => album.id, :released_y => row[3].to_i, :play_length => 5.0, :rating => 0)
+    Track.create(:title => row[0].strip, :artist_id => artist.id, :album_id => album.id, :year => row[3].to_i, :track_length => 300, :rating => 0)
   end
 end

@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 /public/static
+/public/artwork
 *.bak
 

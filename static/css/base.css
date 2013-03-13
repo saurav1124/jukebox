@@ -1,6 +1,5 @@
 body {
   background-color: #666666;
-  font-size: 14pt;
   font-family: "Lucida Grande","Helvetica Neue",Helvetica;
   text-shadow: -1px 1px 1px rgba(255,255,255,1);
   color: #333333;
@@ -81,6 +80,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 .tb {
   display: table;
   width: 100%;
+  font-size: 18px;
 }
 .tb > div {
   display: table-cell;
@@ -102,6 +102,49 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 .tb .btn {
   color: #FFFFFF;
 }
+
+.thpn {
+  display: block;
+}
+.thpn .item {
+  display: block;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.thpn .item > div > .img {
+  position: relative;
+  display: block;
+}
+.thpn .item > div > .ttl {
+  display: block;
+  text-align: center;
+}
+.thpn .item > div > .sttl {
+  display: block;
+  color: #666666;
+  font-size: 13px;
+  text-align: center;
+}
+.th, a.th {
+  display: block;
+  border: 1px solid #FFFFFF;
+}
+.th.sdw, a.th.sdw {
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+.th img {
+  display: block;
+}
+.ply-over {
+  position: absolute;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 100;
+}
+
 .btn {
   font-size: 14pt;
   padding: 10px 20px;
@@ -109,10 +152,12 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 [class*="icon-"] {
   background-image: url("../images/icons/icons-30.png");
-  background-size: 280px 100px;
+  background-size: 320px 100px;
   height:30px;
   width:30px;
 }
+.icon-white { background-image: url("../images/icons/icons-30-white.png"); }
+
 .icon-album { background-position: 0 0; }
 .icon-playlist { background-position: -40px 0; }
 .icon-play { background-position: -80px 0; }
@@ -190,46 +235,3 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 .fnts-s { font-size: 12pt; }
 
 .fntc-gr { color: #999999; }
-
-.thpn {
-  display: block;
-}
-.thpn .item {
-  display: block;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-.thpn .item.w140 {
-  width: 105px;
-}
-.thpn .item > .img {
-  display: block;
-}
-.thpn .item > .ttl {
-  display: block;
-  text-align: center;
-}
-.thpn .item > .sttl {
-  display: block;
-  color: #666666;
-  font-size: 12pt;
-  text-align: center;
-}
-.th, a.th {
-  display: block;
-}
-.th img {
-  display: block;
-}
-.th.w140 {
-  display: table-cell;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  vertical-align: middle;
-}
-.th.w140 img {
-  min-width: 100px;
-  min-height: 100px;
-}

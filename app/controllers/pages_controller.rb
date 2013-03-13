@@ -25,7 +25,7 @@ private
 
   def resolve_layout
     case action_name
-    when "home"
+    when "index"
       return "home"
     else
       return "main"

@@ -45,3 +45,28 @@ body {
   box-shadow: 0 0 12px rgba(0,0,0,0.4), inset 1px 1px 1px rgba(255,255,255,0.4);
   min-height: 600px;
 }
+.th .trk {
+  display: table-cell;
+  width: 103px;
+  height: 103px;
+  text-align: center;
+  vertical-align: middle;
+}
+.th .trk img {
+  min-width: 103px;
+  min-height: 103px;
+}
+.thpn .item .trk {
+  position: relative;
+  width: 105px;
+}
+.thpn .item .trk > .img {
+  display: block;
+}
+.trk .ply-over {
+  width: 105px;
+  height: 105px;
+}
+.trk:hover .ply-over {
+  display: block;
+}

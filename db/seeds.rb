@@ -25,4 +25,5 @@ if !Rails.env.production?
     end
     Track.create(:title => row[0].strip, :artist_id => artist.id, :album_id => album.id, :year => row[3].to_i, :track_length => 300, :rating => 0)
   end
+  puts "Finished Loading Sample Tracks"
 end

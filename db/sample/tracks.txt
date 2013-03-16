@@ -102,3 +102,6 @@ Sharambhava,"Vadya Lahari","South Indian Instrumental Ensemble",2004
 Chandrasekharam,"Vadya Lahari","South Indian Instrumental Ensemble",2004
 "Gi Ta Dhu Ni Ki","Vadya Lahari","South Indian Instrumental Ensemble",2004
 "Rama Katha Sudharasa","Vadya Lahari","South Indian Instrumental Ensemble",2004
+"Going on a Date","New World Track","North Indian Power Music",1998
+"To go on Data","Going and Going","North Indian Power Muisic",1978
+"SuperMan","To go on a date","Hello World",2011

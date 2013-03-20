@@ -19,6 +19,8 @@ Jukebox::Application.routes.draw do
 
   resources :albums
 
+  match '/albums/:name/:uqid', :to => 'albums#show'
+
   match '/search', :to => 'pages#search'
 
   match '/mobile', :to => 'pages#index'

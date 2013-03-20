@@ -6,5 +6,8 @@
 <div class="container <%= !@homePage ? "mp" : "" %>">
 <%= yield(:content) %>
 </div>
+<div class="container">
+<%= render 'layouts/footer' %>
+</div>
 </body>
 </html>

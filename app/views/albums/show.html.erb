@@ -1,0 +1,12 @@
+<% @title = @album.name + " - " + t("label.album") %>
+<div class="disbl pgpd">
+  <div class="distb">
+    <div class="distc vat">
+      <div class="disbl"><%= render "albums/th_large", :obj => @album %></div>
+      <div class="disbl mt10 fnts-l"><%= @album.name %></div>
+    </div>
+    <div class="distc w100 vat pl30">
+      <%= render "tracks/grid", :tracks => @album.tracks %>
+    </div>
+  </div>
+</div>

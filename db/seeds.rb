@@ -54,5 +54,4 @@ if !Rails.env.production?
     track.media = File.new("#{Rails.root}/db/sample/tracks/" + item)
     track.save!
   end
-
 end

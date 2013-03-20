@@ -4,8 +4,8 @@ class Artwork < ActiveRecord::Base
 
   has_attached_file :photo, :styles => { :s => ["64x64>", :jpg],
                                          :m => ["128x128>", :jpg],
-                                         :l => ["256x256>", :jpg],
-                                         :x => ["512x512>", :jpg]
+                                         :l => ["300x300>", :jpg],
+                                         :x => ["640x640>", :jpg]
                                        },
                             :path => APP_CONFIG['artwork_folder_path'] + "/:hash-:style.:extension",
                             :url => APP_CONFIG['artwork_base_url'] + "/:hash-:style.:extension",
@@ -20,7 +20,8 @@ class Artwork < ActiveRecord::Base
                                       'image/png',
                                       'image/gif',
                                       'image/pjpeg',
-                                      'image/x-png'
+                                      'image/x-png',
+                                      'text/plain'
                                      ],
                             :message => I18n.t("errors.file_invalid_format", :formats => "JPG,GIF,PNG")
 

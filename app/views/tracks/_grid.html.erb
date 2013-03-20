@@ -1,0 +1,14 @@
+<div class="trkcont">
+  <ul class="trklst">
+  <% tracks.each_with_index do |track,index| %>
+    <li><a id="track_<%= track.uqid %>" class="play-track" href="#" data-id="<%= track.uqid %>" data-url="<%= track.media_url %>" data-art="<%= track.art %>">
+      <div><span class="c1"><i class="icon-play-button play-btn"></i><span class="tno"><%= index + 1 %></span></span></div>
+      <div class="w100"><span class="title"><%= track.title %></span></div>
+      <div><span class="c2 artist"><%= track.artist_name %></span></div>
+      <div style="<%= @showTrackAlbum ? "" : "display:none;" %>"><span class="c2 album"><%= track.album_name %></span></div>
+      <div><span><%= sec_to_mins(track.track_length) %></span></div>
+      <div><span><i class="curr-playing icon-blank"></i></span></div>
+    </a></li>
+  <% end %>
+  </ul>
+</div>

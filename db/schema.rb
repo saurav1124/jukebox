@@ -11,12 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312180643) do
+ActiveRecord::Schema.define(:version => 20130320022609) do
+
+  create_table "album_artists", :force => true do |t|
+    t.integer  "album_id",   :null => false
+    t.integer  "artist_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "album_artists", ["album_id", "artist_id"], :name => "index_album_artists_on_album_id_and_artist_id", :unique => true
+  add_index "album_artists", ["album_id"], :name => "index_album_artists_on_album_id"
+  add_index "album_artists", ["artist_id"], :name => "index_album_artists_on_artist_id"
 
   create_table "albums", :force => true do |t|
     t.string   "name",        :limit => 512,                  :null => false
     t.string   "url",         :limit => 256,                  :null => false
-    t.integer  "artist_id"
     t.integer  "track_count",                :default => 0,   :null => false
     t.string   "genre"
     t.float    "play_length",                :default => 0.0, :null => false
@@ -26,9 +36,11 @@ ActiveRecord::Schema.define(:version => 20130312180643) do
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
     t.string   "uqid",        :limit => 128,                  :null => false
+    t.integer  "composer_id"
+    t.integer  "artwork_id"
   end
 
-  add_index "albums", ["artist_id", "name"], :name => "index_albums_on_artist_id_and_name", :length => {"artist_id"=>nil, "name"=>255}
+  add_index "albums", ["name"], :name => "index_albums_on_artist_id_and_name", :length => {"name"=>255}
   add_index "albums", ["name"], :name => "index_albums_on_name", :length => {"name"=>255}
   add_index "albums", ["uqid"], :name => "index_albums_on_uqid", :unique => true
   add_index "albums", ["url"], :name => "index_albums_on_url", :length => {"url"=>255}
@@ -63,30 +75,60 @@ ActiveRecord::Schema.define(:version => 20130312180643) do
     t.text     "artwork_data"
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "track_artists", :force => true do |t|
+    t.integer  "track_id",   :null => false
+    t.integer  "artist_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "track_artists", ["artist_id"], :name => "index_track_artists_on_artist_id"
+  add_index "track_artists", ["track_id", "artist_id"], :name => "index_track_artists_on_track_id_and_artist_id", :unique => true
+  add_index "track_artists", ["track_id"], :name => "index_track_artists_on_track_id"
+
   create_table "tracks", :force => true do |t|
-    t.string   "title",        :limit => 512,                :null => false
-    t.string   "url",          :limit => 256,                :null => false
-    t.integer  "artist_id"
+    t.string   "title",              :limit => 512,                :null => false
+    t.string   "url",                :limit => 256,                :null => false
     t.integer  "album_id"
-    t.integer  "album_index",                 :default => 1, :null => false
+    t.integer  "album_index",                       :default => 1, :null => false
     t.datetime "release_dt"
-    t.float    "rating",                                     :null => false
+    t.float    "rating",                                           :null => false
     t.integer  "artwork_id"
     t.string   "genre"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.string   "uqid",         :limit => 128,                :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+    t.string   "uqid",               :limit => 128,                :null => false
     t.integer  "year"
     t.integer  "track_no"
     t.integer  "track_length"
     t.integer  "composer_id"
+    t.string   "media_file_name"
+    t.string   "media_content_type"
+    t.integer  "media_file_size"
+    t.datetime "media_updated_at"
   end
 
   add_index "tracks", ["album_id", "album_index"], :name => "index_tracks_on_album_id_and_album_index"
   add_index "tracks", ["album_id", "title"], :name => "index_tracks_on_album_id_and_title", :length => {"album_id"=>nil, "title"=>255}
   add_index "tracks", ["album_id", "track_no"], :name => "index_tracks_on_album_id_and_track_no"
   add_index "tracks", ["album_id"], :name => "index_tracks_on_album_id_and_track_length"
-  add_index "tracks", ["artist_id", "title"], :name => "index_tracks_on_artist_id_and_title", :length => {"artist_id"=>nil, "title"=>255}
+  add_index "tracks", ["title"], :name => "index_tracks_on_artist_id_and_title", :length => {"title"=>255}
   add_index "tracks", ["title"], :name => "index_tracks_on_title", :length => {"title"=>255}
   add_index "tracks", ["uqid"], :name => "index_tracks_on_uqid", :unique => true
   add_index "tracks", ["url"], :name => "index_tracks_on_url", :length => {"url"=>255}

@@ -2,6 +2,7 @@
 <%= render "layouts/topbar" %>
 <% end %>
 <% content_for :content do %>
+<%= render "shared/top_player" %>
 <%= yield %>
 <% end %>
 <%= render :file => 'layouts/application' %>

@@ -13,11 +13,12 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # GET /albums/1
-  # GET /albums/1.json
   def show
-    @album = Album.find(params[:id])
-
+    if params[:uqid].present?
+      @album = Album.find_by_uqid(params[:uqid])
+    else
+      @album = Album.find(params[:id])
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @album }

@@ -15,5 +15,6 @@
 /tmp
 /public/static
 /public/artwork
+/public/media
 *.bak
 

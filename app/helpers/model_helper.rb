@@ -7,4 +7,9 @@ module ModelHelper
     return (0...size).map{ ModelHelper::UNIQUE_KEY_CHARS[rand(46)] }.join
   end
   
+  def good_url(str)
+    url = str.gsub(/\s/, "-")
+    url
+  end
+  
 end

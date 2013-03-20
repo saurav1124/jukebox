@@ -19,6 +19,7 @@ class PagesController < ApplicationController
       # order_by(:created_at, :desc) if noTermSearch
     end
     @tracks = search.results
+    @albums = Album.all
   end
   
 private

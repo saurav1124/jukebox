@@ -10,6 +10,13 @@ en:
     log_in: Log In
     features: Features
     plans: Plans
+    album: Album
+    albums: Albums
+    track: Track
+    tracks: Tracks
+    artist: Artist
+    artists: Artists
+    various_artists: Various Artists
   txt:
     slogan: "Music. Melody. Moment."
     caption: "What's on your mind? Let us play it for you ..."

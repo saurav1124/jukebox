@@ -1,10 +1,10 @@
-<div class="pl30 pt30 prt10 pr10"><div class="thpn">
-<% @tracks.each do |track| %>
-<div class="item"><div class="trk">
-  <div class="ply-over"></div>
-  <div class="img"><%= render "tracks/th", :track => track %></div>
-  <div class="ttl mt10"><%= track.title %></div>
-  <div class="sttl mt5"><%= track.album_name %></div>
-</div></div>
-<% end %>
-</div></div>
+<% @title = t("label.search") %>
+<div class="p30">
+<div class=""><%= render "albums/th_pane", :albums => @albums %></div>
+<div class="pt10"><%= render "tracks/grid", :tracks => @tracks, :@showTrackAlbum => true %></div>
+</div>
+<script>
+$(document).ready(function() {
+  
+});
+</script>

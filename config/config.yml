@@ -2,18 +2,26 @@ development:
   cdn_base_url: http://cn:3000/static
   artwork_base_url: http://cn:3000/artwork
   artwork_folder_path: /home/saurav/dev/data/artworks
+  media_base_url: http://cn:3000/media
+  media_folder_path: /home/saurav/dev/data/media
 
 test:
   cdn_base_url: http://cn/wkt/static  
   artwork_base_url: http://cn:3000/artwork
   artwork_folder_path: /home/saurav/dev/data/artworks
+  media_base_url: http://cn:3000/media
+  media_folder_path: /home/saurav/dev/data/media
 
 staging:
   cdn_base_url: http://staging/static
   artwork_base_url: http://cn:3000/artwork
   artwork_folder_path: /home/saurav/dev/data/artworks
+  media_base_url: http://cn:3000/media
+  media_folder_path: /home/saurav/dev/data/media
 
 production:
   cdn_base_url: http://production/static
   artwork_base_url: http://cn:3000/artwork
   artwork_folder_path: /home/saurav/dev/data/artworks
+  media_base_url: http://cn:3000/media
+  media_folder_path: /home/saurav/dev/data/media

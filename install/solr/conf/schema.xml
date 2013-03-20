@@ -110,6 +110,10 @@
    <field name="created_at" type="date" indexed="true" stored="true" default="NOW" multiValued="false"/>
    <field name="artwork" type="text_general" indexed="false" stored="true"/>
 
+   <field name="tracks" type="text_general" indexed="true" stored="false" multiValued="true"/>
+   <field name="artists" type="text_general" indexed="true" stored="false" multiValued="true"/>
+   <field name="genres" type="text_general" indexed="true" stored="false" multiValued="true"/>
+
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
    <field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>

@@ -1,2 +1,2 @@
-Dil Chahta Hai, Dil Chahta Hai, Shankar Mahadevan, 2001, Shankar-Ehsaan-Loy
-Jaane Kyon, Dil Chahta Hai, Shankar Mahadevan, 2001, Shankar-Ehsaan-Loy
+"Dil Chahta Hai","Dil Chahta Hai","Shankar Mahadevan","2001","Shankar-Ehsaan-Loy"
+"Jaane Kyon","Dil Chahta Hai","Udit Narayan, Alka Yagnik","2001","Shankar-Ehsaan-Loy"

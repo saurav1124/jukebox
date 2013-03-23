@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        name: "Name"
+        password: Password
+        password_confirmation: Confirm

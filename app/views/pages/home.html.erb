@@ -1,0 +1,11 @@
+<% @title = t("label.home") %>
+<% content_for :left_menu do %>
+<div class="p10">
+  <ul class="nav nav-list">
+    <li class="nav-header"><%= t("label.playlists").upcase %></li>
+    <% my_playlists.each do |pl| %>
+    <li><a href="#"><i class="icon-small icon-playlist"></i> <%= pl.display_name %></a></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

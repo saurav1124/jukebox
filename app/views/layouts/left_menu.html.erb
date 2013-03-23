@@ -1,0 +1,7 @@
+<% content_for :main_content do %>
+<div class="distb">
+<div class="distc vat" style="background-color:#D5D5D5;"><div class="disbl" style="width:240px;min-height:600px;"><%= yield(:left_menu) %></div></div>
+<div class="distc w100"><div class="disbl"><%= yield %></div></div>
+</div>
+<% end %>
+<%= render :file => 'layouts/main' %>

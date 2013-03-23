@@ -1,0 +1,60 @@
+        new_user_session GET    /users/sign_in(.:format)           devise/sessions#new
+            user_session POST   /users/sign_in(.:format)           devise/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)          devise/sessions#destroy
+           user_password POST   /users/password(.:format)          devise/passwords#create
+       new_user_password GET    /users/password/new(.:format)      devise/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)     devise/passwords#edit
+                         PUT    /users/password(.:format)          devise/passwords#update
+cancel_user_registration GET    /users/cancel(.:format)            devise/registrations#cancel
+       user_registration POST   /users(.:format)                   devise/registrations#create
+   new_user_registration GET    /users/sign_up(.:format)           devise/registrations#new
+  edit_user_registration GET    /users/edit(.:format)              devise/registrations#edit
+                         PUT    /users(.:format)                   devise/registrations#update
+                         DELETE /users(.:format)                   devise/registrations#destroy
+                   users GET    /users(.:format)                   users#index
+                         POST   /users(.:format)                   users#create
+                new_user GET    /users/new(.:format)               users#new
+               edit_user GET    /users/:id/edit(.:format)          users#edit
+                    user GET    /users/:id(.:format)               users#show
+                         PUT    /users/:id(.:format)               users#update
+                         DELETE /users/:id(.:format)               users#destroy
+                releases GET    /releases(.:format)                releases#index
+                         POST   /releases(.:format)                releases#create
+             new_release GET    /releases/new(.:format)            releases#new
+            edit_release GET    /releases/:id/edit(.:format)       releases#edit
+                 release GET    /releases/:id(.:format)            releases#show
+                         PUT    /releases/:id(.:format)            releases#update
+                         DELETE /releases/:id(.:format)            releases#destroy
+          artist_members GET    /artist_members(.:format)          artist_members#index
+                         POST   /artist_members(.:format)          artist_members#create
+       new_artist_member GET    /artist_members/new(.:format)      artist_members#new
+      edit_artist_member GET    /artist_members/:id/edit(.:format) artist_members#edit
+           artist_member GET    /artist_members/:id(.:format)      artist_members#show
+                         PUT    /artist_members/:id(.:format)      artist_members#update
+                         DELETE /artist_members/:id(.:format)      artist_members#destroy
+                 artists GET    /artists(.:format)                 artists#index
+                         POST   /artists(.:format)                 artists#create
+              new_artist GET    /artists/new(.:format)             artists#new
+             edit_artist GET    /artists/:id/edit(.:format)        artists#edit
+                  artist GET    /artists/:id(.:format)             artists#show
+                         PUT    /artists/:id(.:format)             artists#update
+                         DELETE /artists/:id(.:format)             artists#destroy
+                  tracks GET    /tracks(.:format)                  tracks#index
+                         POST   /tracks(.:format)                  tracks#create
+               new_track GET    /tracks/new(.:format)              tracks#new
+              edit_track GET    /tracks/:id/edit(.:format)         tracks#edit
+                   track GET    /tracks/:id(.:format)              tracks#show
+                         PUT    /tracks/:id(.:format)              tracks#update
+                         DELETE /tracks/:id(.:format)              tracks#destroy
+                  albums GET    /albums(.:format)                  albums#index
+                         POST   /albums(.:format)                  albums#create
+               new_album GET    /albums/new(.:format)              albums#new
+              edit_album GET    /albums/:id/edit(.:format)         albums#edit
+                   album GET    /albums/:id(.:format)              albums#show
+                         PUT    /albums/:id(.:format)              albums#update
+                         DELETE /albums/:id(.:format)              albums#destroy
+                                /albums/:name/:uqid(.:format)      albums#show
+                  search        /search(.:format)                  pages#search
+                  mobile        /mobile(.:format)                  pages#index
+                fullsite        /fullsite(.:format)                pages#index
+                    root        /                                  pages#index

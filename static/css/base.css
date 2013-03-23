@@ -8,8 +8,11 @@ body {
 }
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
   padding: 10px 10px;  
-  font-size: 14pt;
+  font-size: 14px;
 }
+h1, h2, h3, h4 { padding: 0; margin: 0; }
+h1 { font-size: 24px; }
+h2 { font-size: 20px; }
 div {
   vertical-align: top;
 }
@@ -17,6 +20,9 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+form {
+  margin: 0 0 0 0;
 }
 .container {
   min-width: 940px;
@@ -64,6 +70,9 @@ ul {
   padding-top: 30px;
   vertical-align: top;
 }
+.home-search input {
+  font-size: 14pt;
+}
 @media (min-width: 1200px) {
   .home-cp {
     font-size: 18pt;
@@ -84,7 +93,7 @@ ul {
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,1);
+  background-color: #333333;
 }
 .home-tbc {
   background-color: rgba(0,0,0,0.6);
@@ -96,23 +105,12 @@ ul {
 }
 .tb > div {
   display: table-cell;
-  padding: 10px 10px 10px 20px;
+  padding: 10px 10px 10px 10px;
   vertical-align: middle;
   white-space: nowrap;
-  text-shadow: 1px 1px 1px rgba(0,0,0,1);
 }
 .tb > div:first-child {
   padding-left: 0;
-}
-.tb a {
-  color: #CCCCCC;
-  text-decoration: none;
-}
-.tb a:hover {
-  color: #FFFFFF;
-}
-.tb .btn {
-  color: #FFFFFF;
 }
 
 .thpn {
@@ -178,6 +176,13 @@ ul {
 .grid.altc > tbody > tr:nth-child(even) > td {
   background-color: #EDEDED;
 }
+.footer-bottom {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .footer {
   display: block;
   color: #CCCCCC;
@@ -189,6 +194,9 @@ ul {
 }
 .footer span:last-child {
   padding-right: 0;
+}
+.hlinks a {
+  padding: 5px 5px;
 }
 .clearfix:after {
   content: ".";
@@ -218,18 +226,34 @@ html[xmlns] .clearfix {
   height:30px;
   width:30px;
 }
+.icon-small {
+  background-size: 160px 50px;
+  height:15px;
+  width:15px;
+}
 .icon-white { background-image: url("../images/icons/icons-30-white.png"); }
 
 .icon-blank { background-position: -3000px -3000px; }
 .icon-album { background-position: 0 0; }
+.icon-small.icon-album { background-position: 0 0; }
 .icon-playlist { background-position: -40px 0; }
+.icon-small.icon-playlist { background-position: -20px 0; }
 .icon-play { background-position: -80px 0; }
+.icon-small.icon-play { background-position: -40px 0; }
 .icon-pause { background-position: -120px 0; }
+.icon-small.icon-pause { background-position: -60px 0; }
 .icon-step-back { background-position: -160px 0; }
+.icon-small.icon-step-back { background-position: -80px 0; }
 .icon-step-forward { background-position: -200px 0; }
+.icon-small.icon-step-forward { background-position: -100px 0; }
 .icon-search { background-position: 0 -40px; }
+.icon-small.icon-search { background-position: 0 -20px; }
 .icon-play-button { background-position: -40px -40px; }
+.icon-small.icon-play-button { background-position: -20px -20px; }
 .icon-vol-high { background-position: -80px -40px; }
+.icon-small.icon-vol-high { background-position: -40px -20px; }
+.icon-user { background-position: -40px 0; }
+.icon-small.icon-user { background-position: -20 0; }
 
 .txtico {
   display: block;
@@ -249,6 +273,10 @@ html[xmlns] .clearfix {
 .distc { display: table-cell; }
 .disfl { float: left; }
 .disfr { float: right; }
+
+.tac { text-align: center; }
+.tar { text-align: right; }
+.mau { margin: auto; }
 
 .p10 { padding: 10px; }
 .p20 { padding: 20px; }
@@ -301,15 +329,38 @@ html[xmlns] .clearfix {
 .ml30 { margin-left: 30px; }
 .ml40 { margin-left: 40px; }
 
-.w100 { width: 100%; }
+.w100, button.w100, input[type="submit"].w100 { width: 100%; }
 .w50 { width: 50%; }
-
-.tac { text-align: center; }
-.tar { text-align: right; }
 
 .fnts-s { font-size: 12px; }
 .fnts-m { font-size: 14px; }
 .fnts-m1 { font-size: 16px; }
 .fnts-l { font-size: 18px; }
 
+.dvdb {
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+}
+
 .fntc-gr { color: #999999; }
+
+/* bootstrap overwrites */
+.navbar .nav > li > a {
+  color: #CCCCCC;
+  text-shadow: 1px 1px 1px rgba(0,0,0,1);
+}
+.navbar .nav > li > a:hover {
+  color: #FFFFFF;
+}
+.form-horizontal .control-label {
+  padding-top: 10px;
+}
+.form-horizontal .control-group {
+  margin-bottom: 10px;
+}
+.nav-header {
+  font-size: 14px;
+}
+.nav-list > li > a {
+  color: #333333;
+}

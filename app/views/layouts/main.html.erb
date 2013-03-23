@@ -3,6 +3,6 @@
 <% end %>
 <% content_for :content do %>
 <%= render "shared/top_player" %>
-<%= yield %>
+<%= content_for?(:main_content) ? yield(:main_content) : yield %>
 <% end %>
 <%= render :file => 'layouts/application' %>

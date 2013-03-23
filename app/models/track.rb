@@ -19,8 +19,8 @@ class Track < ActiveRecord::Base
 
   before_save   :extract_metadata
   before_create :set_uqid
-  before_save   :process_media
-
+  after_save    :process_media
+  
   searchable :ignore_attribute_changes_of => [
                                               :album_index,
                                               :play_length
@@ -61,8 +61,9 @@ class Track < ActiveRecord::Base
   end
 
   def process_media
-    
   end
+
+  handle_asynchronously :process_media
 
 private
 

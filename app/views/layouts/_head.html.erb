@@ -10,6 +10,7 @@
 <%= javascript_include_tag "application" %>
 <%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/jquery/js/jquery.min.js" %>
 <%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/js/bootstrap.min.js" %>
+<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/js/common.js" %>
 <%= csrf_meta_tags %>
 <%= yield(:head) %>
 </head>

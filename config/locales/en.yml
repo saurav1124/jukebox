@@ -17,10 +17,30 @@ en:
     artist: Artist
     artists: Artists
     various_artists: Various Artists
+    browse: Browse
+    email: Email
+    password: Password
+    signup_here: "Sign up here!"
+    remember_me: Remember me
+    forgot_password: Forgot password?
+    sign_up: Create an Account
+    sign_in: Sign In
+    sign_out: Sign Out
+    forgot_pass_btn: "Send me instructions"
+    playlists: Playlists
+    home: Home
   txt:
     slogan: "Music. Melody. Moment."
     caption: "What's on your mind? Let us play it for you ..."
     search_prompt: "e.g. Latest, Top 10, Kishore, Aashiq ..."
+    no_acc: "Don't have an account?"
+    create_acc: "Create an account. Its FREE!"
+    forgot_pass: "Forgot your password? You are not the first one ..."
+    forgot_pass_msg: "To reset your password enter your email address below and we will send you instructions on how to create a new password."
+    welcome_back: Welcome Back to Miliea!
+  playlists:
+    favorites: My Favorites
+    jukebox: Jukebox
   errors:
     photo_too_large: "Selected photo is too large (max %{size})"
     file_invalid_format: "Invalid file format. (%{formats})"

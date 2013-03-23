@@ -1,6 +1,11 @@
 Jukebox::Application.routes.draw do
 
-  devise_for :users
+  resources :playlists
+
+
+  devise_for :users do
+    get 'signout' => 'devise/sessions#destroy'
+  end
 
   resources :users
 
@@ -21,7 +26,9 @@ Jukebox::Application.routes.draw do
 
   match '/albums/:name/:uqid', :to => 'albums#show'
 
+  match '/home', :to => 'pages#home'
   match '/search', :to => 'pages#search'
+  match '/browse', :to => 'pages#browse'
 
   match '/mobile', :to => 'pages#index'
   match '/fullsite', :to => 'pages#index'

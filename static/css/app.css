@@ -1,6 +1,28 @@
 body {
   padding-top: 76px;
 }
+.tli.dropdown-menu {
+  padding: 0 0;
+}
+.tmn.dropdown-menu {
+  font-size: 14px;
+  text-shadow: none;
+}
+.tlif {
+  display: block;
+  font-size: 14px;
+}
+.tlif .tli {
+  padding: 15px;
+}
+.tlif .tsu {
+  display: block;
+  background-color: #E5E5E5;
+  border-top: 1px solid #D5D5D5;
+  padding: 10px 15px;
+  border-radius: 0 0 5px 5px; 
+  text-align: center;
+}
 .mp {
   display: block;
   background-color: #E4E5E5;

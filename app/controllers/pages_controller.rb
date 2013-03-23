@@ -28,6 +28,8 @@ private
     case action_name
     when "index"
       return "home"
+    when "home"
+      return "left_menu"
     else
       return "main"
     end

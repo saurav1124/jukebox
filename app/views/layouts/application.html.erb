@@ -6,8 +6,13 @@
 <div class="container <%= !@homePage ? "mp" : "" %>">
 <%= yield(:content) %>
 </div>
-<div class="container">
+<div class="<%= @homePage ? "footer-bottom" : "" %>"><div class="container">
 <%= render 'layouts/footer' %>
-</div>
+</div></div>
+<script>
+$(document).ready(function() {
+  jkCommon.init();
+});
+</script>
 </body>
 </html>

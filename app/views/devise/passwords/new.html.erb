@@ -1,12 +1,12 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="disbl mau mt30" style="width:600px;">
+  <h1 class="tac dvdb"><%= t("txt.forgot_pass") %></h1>
+  <div class="disbl tac mt20"><%= t("txt.forgot_pass_msg") %></div>
+  <div class="disbl mt20 tac pb10 dvdb">
+    <%= devise_error_messages! %>
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+      <div class="disib"><%= f.email_field :email, :placeholder => t("label.email"), :class => "input-xlarge" %>
+      </div><div class="disib ml10"><%= f.submit t("label.forgot_pass_btn"), :class => "btn btn-info" %></div>
+    <% end %>
+  </div>
+  <div class="disbl tac hlinks mt20"><%= render "devise/shared/links" %></div>
+</div>

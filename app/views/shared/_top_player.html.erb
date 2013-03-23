@@ -31,7 +31,7 @@ $(document).ready(function() {
   $("#player").bind("ended", function() {
     $(".curr-playing").removeClass("icon-vol-high");
     $(".curr-playing").addClass("icon-blank");
-    $("#" + $(".pl").attr("data-track")).parent().next().find(".play-track").click();
+    setTimeout(function(){ $("#" + $(".pl").attr("data-track")).parent().next().find(".play-track").click() }, 1000);
   });
   $("#player").bind("play", function() {
     $(".curr-playing").removeClass("icon-vol-high");

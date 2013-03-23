@@ -1,27 +1,27 @@
 development:
-  cdn_base_url: http://cn:3000/static
-  artwork_base_url: http://cn:3000/artwork
-  artwork_folder_path: /home/saurav/dev/data/artworks
-  media_base_url: http://cn:3000/media
-  media_folder_path: /home/saurav/dev/data/media
+  cdn_base_url: http://localhost:3000/static
+  artwork_base_url: http://localhost:3000/artworks
+  artwork_folder_path: /Users/saurav/dev/data/jukebox/artworks
+  media_base_url: http://localhost:3000/media
+  media_folder_path: /Users/saurav/dev/data/jukebox/media
 
 test:
   cdn_base_url: http://cn/wkt/static  
-  artwork_base_url: http://cn:3000/artwork
-  artwork_folder_path: /home/saurav/dev/data/artworks
-  media_base_url: http://cn:3000/media
-  media_folder_path: /home/saurav/dev/data/media
+  artwork_base_url: http://localhost:3000/artworks
+  artwork_folder_path: /Users/saurav/dev/data/jukebox/artworks
+  media_base_url: http://localhost:3000/media
+  media_folder_path: /Users/saurav/dev/data/jukebox/media
 
 staging:
   cdn_base_url: http://staging/static
-  artwork_base_url: http://cn:3000/artwork
-  artwork_folder_path: /home/saurav/dev/data/artworks
-  media_base_url: http://cn:3000/media
-  media_folder_path: /home/saurav/dev/data/media
+  artwork_base_url: http://localhost:3000/artworks
+  artwork_folder_path: /Users/saurav/dev/data/jukebox/artworks
+  media_base_url: http://localhost:3000/media
+  media_folder_path: /Users/saurav/dev/data/jukebox/media
 
 production:
   cdn_base_url: http://production/static
-  artwork_base_url: http://cn:3000/artwork
-  artwork_folder_path: /home/saurav/dev/data/artworks
-  media_base_url: http://cn:3000/media
-  media_folder_path: /home/saurav/dev/data/media
+  artwork_base_url: http://localhost:3000/artworks
+  artwork_folder_path: /Users/saurav/dev/data/jukebox/artworks
+  media_base_url: http://localhost:3000/media
+  media_folder_path: /Users/saurav/dev/data/jukebox/media

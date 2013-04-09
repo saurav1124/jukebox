@@ -6,7 +6,7 @@ class AlbumsController < ApplicationController
   
   def index
     @tmenu = "albums"
-    @albums = Album.order("name")
+    @albums = Album.where("user_id = ?", current_user.id).order("name")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @albums }
@@ -15,7 +15,7 @@ class AlbumsController < ApplicationController
 
   def show
     @tmenu = "albums"
-    @albums = Album.order("name")
+    @albums = Album.where("user_id = ?", current_user.id).order("name")
     if params[:uqid].present?
       @album = Album.find_by_uqid(params[:uqid])
     else

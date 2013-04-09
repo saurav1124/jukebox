@@ -29,10 +29,10 @@ class User < ActiveRecord::Base
   after_create    :add_default_playlists
 
   DEFAULT_PLAYLISTS = [
-    ["favorites", 12],
-    ["recently_played", 24],
-    ["most_played", 28],
-    ["friends_listening", 36]
+    ["favorites", 12, Playlist::TYPE_FAVORITE],
+    ["recently_played", 24, Playlist::TYPE_RECENT_PLAYED],
+    ["most_played", 28, Playlist::TYPE_MOST_PLAYED],
+    ["friends_listening", 36, Playlist::TYPE_FRIENDS_PLAYED]
   ]
   
   def display_name
@@ -43,7 +43,7 @@ private
 
   def add_default_playlists
     DEFAULT_PLAYLISTS.each do |list|
-      Playlist.create(:name => "playlists." + list[0], :user_id => self.id, :order_no => list[1].to_i, :personal => true, :syslist => true)
+      Playlist.create(:name => "playlists." + list[0], :user_id => self.id, :order_no => list[1].to_i, :personal => true, :list_type => list[2].to_i)
     end
   end
 

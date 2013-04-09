@@ -1,12 +1,14 @@
 class PagesController < ApplicationController
 
   layout :resolve_layout
-
+  
+  before_filter :check_signed_in!, :except => [:index, :request_invite]
+  
   def home
     @tracks = Track.limit(40)
     plLimit = @tracks.count > 0 ? @tracks.count/2 : 10
     plLimit = 10 if plLimit < 10
-    @playlists = Playlist.where("user_id = ?", current_user.id).order("syslist desc, order_no").limit(plLimit)
+    @playlists = Playlist.where("user_id = ?", current_user.id).order("list_type, order_no").limit(plLimit)
     albLimit = @tracks.count > 0 ? (@tracks.count - plLimit) : 10
     albLimit = 10 if albLimit < 10
     @albums = Album.limit(albLimit)

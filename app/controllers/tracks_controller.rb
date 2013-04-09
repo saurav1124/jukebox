@@ -38,7 +38,7 @@ class TracksController < ApplicationController
 
   def index
     @tmenu = "tracks"
-    @tracks = Track.all
+    @tracks = Track.where("user_id = ?", current_user.id).order("play_count desc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tracks }

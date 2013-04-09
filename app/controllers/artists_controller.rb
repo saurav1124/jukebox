@@ -6,7 +6,12 @@ class ArtistsController < ApplicationController
 
   def index
     @tmenu = "artists"
-    @artists = Artist.order("name")
+    @artists = Artist.where("user_id = ?", current_user.id).order("name")
+    @artists_ordered = TrackArtist.all(:select => "count(*) track_count, artist_id",
+                                      :conditions => ["user_id = ? ", current_user.id],
+                                      :group => "artist_id",
+                                      :order => "track_count desc",
+                                      :limit => 10)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @artists }

@@ -4,9 +4,15 @@
 <ul class="nav nav-list">
   <li class="nav-header"><%= t("label.artists") %></li>
   <% @artists.each do |artist| %>
-  <li><a href="<%= tracks_artist_path(artist.uqid) %>" class="lnav-menu"><span class="user-icon"><%= image_tag artist.artwork_url, :alt => artist.name %></span>
-    <%= artist.name %></a></li>
+  <li id="a<%= artist.id %>"><a href="<%= tracks_artist_path(artist.uqid) %>" class="lnav-menu"><i class="icon-small icon-user"></i><%= artist.name %></a></li>
   <% end %>
 </ul>
 </div>
 <% end %>
+<div class="disbl mb30">
+<% @artists_ordered.each do |artist| %>
+<div class="disbl bdrb">
+<%= render "artists/show_w", :artist => artist.artist, :tracks => top3_tracks_by_artist(artist.artist_id), :track_count => artist.track_count %>
+</div>
+<% end %>
+</div>

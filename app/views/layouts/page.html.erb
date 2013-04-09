@@ -5,7 +5,7 @@
 <div class="container"><div class="p10"><div class="mainp <%= @customMainClass %>"><div class="content">
   <div class="topp">
     <% if user_signed_in? %>
-    <div class="logo hide ml-play"><%= image_tag APP_CONFIG['cdn_base_url'] + "/images/logo-main-m.png" %></div>
+    <div class="logo hide ml-play"><%= image_tag APP_CONFIG['cdn_base_url'] + "/images/logo-main-l.png" %></div>
     <% end %>
     <div class="play">
       <div class="logo ml-no-play"><%= image_tag APP_CONFIG['cdn_base_url'] + "/images/logo-main-l.png" %></div>
@@ -115,8 +115,8 @@ $(document).bind("ready ajaxComplete", function() {
           $("#player_1").jPlayer("play");
           $(".play-track").removeAttr("data-playing");
           track.attr("data-playing", "1");
-          track.find(".play-count").text(data.play_count);
-          track.find(".play-count").show();
+          track.closest("li").find(".play-count").text(data.play_count);
+          track.closest("li").find(".play-count").show();
         }
       });
     } else {
@@ -139,7 +139,7 @@ $(document).bind("ready ajaxComplete", function() {
       $(this).addClass("ppo");
       $(this).popover({
         placement: 'right',
-        title: '<span><%= t("label.add_to_playlist") %></span><a href=\"#\" class=\"close\">&times;</a>',
+        title: '<span class="pr10"><%= t("label.add_to_playlist") %></span><a href=\"#\" class=\"close\">&times;</a>',
         trigger: 'click',
         html: true,
         container: 'body',

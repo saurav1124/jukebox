@@ -49,7 +49,7 @@ class PlaylistsController < ApplicationController
   end
 
   def index
-    @playlists = Playlist.order("order_no")
+    @playlists = Playlist.where("user_id = ?", current_user.id).order("order_no")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @playlists }

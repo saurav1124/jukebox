@@ -11,7 +11,7 @@
         <% end %>
         <%= render "tracks/play_count_badge", :track => track %></span></div>
       <div><span class="c2 artist"><%= track.artist_name %></span></div>
-      <div style="<%= @showTrackAlbum ? "" : "display:none;" %>"><span class="c2 album"><%= track.album_name %></span></div>
+      <div style="<%= !@hideAlbums ? "" : "display:none;" %>"><span class="c2 album"><%= track.album_name %></span></div>
       <div><span><%= sec_to_mins(track.track_length) %></span></div>
       <div><span><i class="curr-playing icon-small icon-blank"></i></span></div>
     </div></li>

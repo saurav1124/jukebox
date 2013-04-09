@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329142454) do
+ActiveRecord::Schema.define(:version => 20130409050209) do
 
   create_table "album_artists", :force => true do |t|
     t.integer  "album_id",   :null => false
@@ -63,11 +63,13 @@ ActiveRecord::Schema.define(:version => 20130329142454) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.string   "uqid",       :limit => 128, :null => false
+    t.integer  "user_id",                   :null => false
   end
 
   add_index "artists", ["name"], :name => "index_artists_on_name", :length => {"name"=>255}
   add_index "artists", ["uqid"], :name => "index_artists_on_uqid", :unique => true
   add_index "artists", ["url"], :name => "index_artists_on_url", :length => {"url"=>255}
+  add_index "artists", ["user_id"], :name => "index_artists_on_user_id"
 
   create_table "artworks", :force => true do |t|
     t.string   "photo_file_name"
@@ -108,34 +110,38 @@ ActiveRecord::Schema.define(:version => 20130329142454) do
   add_index "playlist_tracks", ["playlist_id"], :name => "index_playlist_tracks_on_playlist_id"
 
   create_table "playlists", :force => true do |t|
-    t.string   "name",       :limit => 32,                     :null => false
-    t.integer  "user_id",                                      :null => false
-    t.integer  "order_no",                                     :null => false
-    t.boolean  "personal",                  :default => true,  :null => false
-    t.boolean  "syslist",                   :default => false, :null => false
-    t.string   "uqid",       :limit => 128,                    :null => false
-    t.string   "url",        :limit => 256,                    :null => false
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.string   "name",       :limit => 32,                    :null => false
+    t.integer  "user_id",                                     :null => false
+    t.integer  "order_no",                                    :null => false
+    t.boolean  "personal",                  :default => true, :null => false
+    t.string   "uqid",       :limit => 128,                   :null => false
+    t.string   "url",        :limit => 256,                   :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "list_type",                 :default => 100,  :null => false
   end
 
   add_index "playlists", ["name"], :name => "index_playlists_on_name"
+  add_index "playlists", ["user_id", "list_type", "order_no"], :name => "index_playlists_on_user_id_and_list_type_and_order_no", :unique => true
+  add_index "playlists", ["user_id", "list_type"], :name => "index_playlists_on_user_id_and_list_type"
   add_index "playlists", ["user_id", "name"], :name => "index_playlists_on_user_id_and_name", :unique => true
+  add_index "playlists", ["user_id", "order_no"], :name => "index_playlists_on_user_id_and_syslist_and_order_no", :unique => true
   add_index "playlists", ["user_id", "personal"], :name => "index_playlists_on_user_id_and_personal"
-  add_index "playlists", ["user_id", "syslist", "order_no"], :name => "index_playlists_on_user_id_and_syslist_and_order_no", :unique => true
-  add_index "playlists", ["user_id", "syslist"], :name => "index_playlists_on_user_id_and_syslist"
   add_index "playlists", ["user_id"], :name => "index_playlists_on_user_id"
+  add_index "playlists", ["user_id"], :name => "index_playlists_on_user_id_and_syslist"
 
   create_table "track_artists", :force => true do |t|
     t.integer  "track_id",   :null => false
     t.integer  "artist_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :null => false
   end
 
   add_index "track_artists", ["artist_id"], :name => "index_track_artists_on_artist_id"
   add_index "track_artists", ["track_id", "artist_id"], :name => "index_track_artists_on_track_id_and_artist_id", :unique => true
   add_index "track_artists", ["track_id"], :name => "index_track_artists_on_track_id"
+  add_index "track_artists", ["user_id"], :name => "index_track_artists_on_user_id"
 
   create_table "tracks", :force => true do |t|
     t.string   "title",              :limit => 512,                :null => false

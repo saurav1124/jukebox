@@ -3,7 +3,11 @@
     <div class="distc w100 pl20">
       <div class="distb w100">
         <div class="distc w100 vam">
-          <span class="disbl fntw-b fnts-m1" style="margin-top:3px;"><%= @artist.name %></span>
+          <div class="disbl"><span class="fntw-b fnts-m1"><%= artist.name %></span>
+          <% if defined? track_count %>
+          <span class="">(<a href="#" class="view-artist" data-id="<%= artist.id %>"><%= t("counts.tracks", :count => track_count) %></a>)</span>
+          <% end %>
+          </div>
         </div>
         <div class="distc nowrap">
           <a class="play-artist tipt" href="javascript:;" title="<%= t("label.play") %>"><i class="icon-play"></i></a>
@@ -13,12 +17,16 @@
   </div>
 </div>
 <div class="disbl">
-  <%= render "tracks/grid", :tracks => @tracks, :nobdr => true %>
+  <%= render "tracks/grid", :tracks => tracks, :nobdr => true %>
 </div>
 <script>
 $(document).ready(function() {
   $(".play-artist").click(function() {
     jkCommon.playFirstTrack();
+    return false;
+  });
+  $(".view-artist").click(function() {
+    $("#a" + $(this).attr("data-id") + " a").click();
     return false;
   });
 });

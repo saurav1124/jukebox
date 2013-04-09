@@ -101,9 +101,10 @@ private
         artist_ids = []
         artist_names = tag.artist
         artist_names.split(/\s*&\s+|\s*,\s*|\s+&\s+|\s+and\s+/).each do |name|
-          artist = Artist.where("name = ?", name.strip).first
+          artist = Artist.where("name = ? and user_id = ?", name.strip, self.user_id).first
           if artist == nil
             artist = Artist.new(:name => name.strip)
+            artist.user_id = self.user_id
             artist.save!
           end
           artist_ids << artist.id
@@ -115,7 +116,7 @@ private
         else
           album_name = album_name.strip
         end
-        album = Album.where("name = ?", album_name).first
+        album = Album.where("name = ? and user_id = ?", album_name, self.user_id).first
         if album == nil
           album = Album.new(:name => album_name)
           album.user_id = self.user_id
@@ -143,6 +144,7 @@ private
         self.rating = 0
         artist_ids.each do |artist_id|
           aa = TrackArtist.new(:artist_id => artist_id)
+          aa.user_id = self.user_id
           self.artists << aa
         end
       end

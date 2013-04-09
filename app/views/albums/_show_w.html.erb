@@ -16,7 +16,7 @@
   </div>
 </div>
 <div class="disbl">
-  <%= render "tracks/grid", :tracks => @album.tracks, :nobdr => true %>
+  <%= render "tracks/grid", :tracks => @album.tracks, :nobdr => true, :@hideAlbums => true %>
 </div>
 <script>
 $(document).ready(function() {

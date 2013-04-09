@@ -1,0 +1,7 @@
+<ul class="nav nav-list">
+  <li class="nav-header"><%= @user.display_name %></li>
+  <li class="<%= lmenu == "index" ? "active" : "" %>"><a href="<%= account_path %>" class="tipt" title="Profile"><i class="icon-user icon-small"></i> <%= t("label.profile") %></a></li>
+  <li class="<%= lmenu == "photo" ? "active" : "" %>"><a href="<%= account_photo_path %>"><i class="icon-photo icon-small"></i> <%= t("label.photo") %></a></li>
+  <li class="<%= lmenu == "friends" ? "active" : "" %>"><a href="<%= account_friends_path %>"><i class="icon-friends icon-small"></i> <%= t("label.friends") %></a></li>
+  <li class="<%= lmenu == "password" ? "active" : "" %>"><a href="<%= account_password_path %>"><i class="icon-lock icon-small"></i> <%= t("label.password") %></a></li>
+</ul>

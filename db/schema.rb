@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321201117) do
+ActiveRecord::Schema.define(:version => 20130329142454) do
 
   create_table "album_artists", :force => true do |t|
     t.integer  "album_id",   :null => false
@@ -25,25 +25,29 @@ ActiveRecord::Schema.define(:version => 20130321201117) do
   add_index "album_artists", ["artist_id"], :name => "index_album_artists_on_artist_id"
 
   create_table "albums", :force => true do |t|
-    t.string   "name",        :limit => 512,                  :null => false
-    t.string   "url",         :limit => 256,                  :null => false
-    t.integer  "track_count",                :default => 0,   :null => false
+    t.string   "name",           :limit => 512,                  :null => false
+    t.string   "url",            :limit => 256,                  :null => false
+    t.integer  "track_count",                   :default => 0,   :null => false
     t.string   "genre"
-    t.float    "play_length",                :default => 0.0, :null => false
+    t.float    "play_length",                   :default => 0.0, :null => false
     t.integer  "released_d"
     t.integer  "released_m"
     t.integer  "released_y"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.string   "uqid",        :limit => 128,                  :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.string   "uqid",           :limit => 128,                  :null => false
     t.integer  "composer_id"
     t.integer  "artwork_id"
+    t.integer  "user_id",                                        :null => false
+    t.datetime "last_played_at"
   end
 
+  add_index "albums", ["last_played_at"], :name => "index_albums_on_last_played_at"
   add_index "albums", ["name"], :name => "index_albums_on_artist_id_and_name", :length => {"name"=>255}
   add_index "albums", ["name"], :name => "index_albums_on_name", :length => {"name"=>255}
   add_index "albums", ["uqid"], :name => "index_albums_on_uqid", :unique => true
   add_index "albums", ["url"], :name => "index_albums_on_url", :length => {"url"=>255}
+  add_index "albums", ["user_id"], :name => "index_albums_on_user_id"
 
   create_table "artist_members", :force => true do |t|
     t.integer  "group_id",   :null => false
@@ -153,16 +157,35 @@ ActiveRecord::Schema.define(:version => 20130321201117) do
     t.string   "media_content_type"
     t.integer  "media_file_size"
     t.datetime "media_updated_at"
+    t.integer  "user_id",                                          :null => false
+    t.datetime "last_played_at"
+    t.integer  "play_count",                        :default => 0, :null => false
   end
 
   add_index "tracks", ["album_id", "album_index"], :name => "index_tracks_on_album_id_and_album_index"
   add_index "tracks", ["album_id", "title"], :name => "index_tracks_on_album_id_and_title", :length => {"album_id"=>nil, "title"=>255}
   add_index "tracks", ["album_id", "track_no"], :name => "index_tracks_on_album_id_and_track_no"
   add_index "tracks", ["album_id"], :name => "index_tracks_on_album_id_and_track_length"
+  add_index "tracks", ["last_played_at"], :name => "index_tracks_on_last_played_at"
+  add_index "tracks", ["play_count"], :name => "index_tracks_on_play_count"
   add_index "tracks", ["title"], :name => "index_tracks_on_artist_id_and_title", :length => {"title"=>255}
   add_index "tracks", ["title"], :name => "index_tracks_on_title", :length => {"title"=>255}
   add_index "tracks", ["uqid"], :name => "index_tracks_on_uqid", :unique => true
   add_index "tracks", ["url"], :name => "index_tracks_on_url", :length => {"url"=>255}
+  add_index "tracks", ["user_id"], :name => "index_tracks_on_user_id"
+
+  create_table "user_tracks", :force => true do |t|
+    t.integer  "user_id",                       :null => false
+    t.integer  "track_id",                      :null => false
+    t.integer  "play_count",     :default => 0, :null => false
+    t.integer  "last_played_at", :default => 0, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "user_tracks", ["user_id", "play_count"], :name => "index_user_tracks_on_user_id_and_play_count"
+  add_index "user_tracks", ["user_id", "track_id"], :name => "index_user_tracks_on_user_id_and_track_id", :unique => true
+  add_index "user_tracks", ["user_id"], :name => "index_user_tracks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                                 :null => false
@@ -188,6 +211,10 @@ ActiveRecord::Schema.define(:version => 20130321201117) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

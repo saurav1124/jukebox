@@ -1,13 +1,13 @@
 <div class="disbl mau mt30" style="width:520px;">
   <h1 class="tac dvdb"><%= t("txt.welcome_back") %></h1>
   <div class="disbl mt20 pb10 dvdb">
-    <%= devise_error_messages! %>
+    <%= render "shared/errors" %>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <div class="form-horizontal" style="">
       <div class="control-group">
         <%= f.label :email, :class => "control-label" %>
         <div class="controls">
-          <%= f.email_field :email %>
+          <%= f.email_field :email, :autofocus => true %>
         </div>
       </div>
       <div class="control-group">
@@ -23,7 +23,7 @@
       </div>
       <div class="control-group">
         <div class="controls">
-          <%= f.submit t("label.log_in"), :class => "btn btn-info" %>
+          <%= f.submit t("label.log_in"), :class => "btn btn-info btn-l" %>
         </div>
       </div>
     </div>

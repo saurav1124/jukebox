@@ -1,83 +1,33 @@
 class ArtistsController < ApplicationController
-  # GET /artists
-  # GET /artists.json
-  def index
-    @artists = Artist.all
 
+  layout :resolve_layout
+
+  before_filter :check_signed_in!
+
+  def index
+    @tmenu = "artists"
+    @artists = Artist.order("name")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @artists }
     end
   end
 
-  # GET /artists/1
-  # GET /artists/1.json
-  def show
-    @artist = Artist.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @artist }
+  def tracks
+    if params[:uqid].present?
+      @artist = Artist.find_by_uqid(params[:uqid])
+    else
+      @artist = Artist.find_by_uqid(params[:id])
     end
+    tracks = TrackArtist.where("artist_id = ?", @artist.id)
+    @tracks = tracks.map(&:track)
+    render "artists/tracks", :layout => false
   end
 
-  # GET /artists/new
-  # GET /artists/new.json
-  def new
-    @artist = Artist.new
+private
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @artist }
-    end
+  def resolve_layout
+    return "left_nav"
   end
 
-  # GET /artists/1/edit
-  def edit
-    @artist = Artist.find(params[:id])
-  end
-
-  # POST /artists
-  # POST /artists.json
-  def create
-    @artist = Artist.new(params[:artist])
-
-    respond_to do |format|
-      if @artist.save
-        format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
-        format.json { render json: @artist, status: :created, location: @artist }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @artist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /artists/1
-  # PUT /artists/1.json
-  def update
-    @artist = Artist.find(params[:id])
-
-    respond_to do |format|
-      if @artist.update_attributes(params[:artist])
-        format.html { redirect_to @artist, notice: 'Artist was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @artist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /artists/1
-  # DELETE /artists/1.json
-  def destroy
-    @artist = Artist.find(params[:id])
-    @artist.destroy
-
-    respond_to do |format|
-      format.html { redirect_to artists_url }
-      format.json { head :no_content }
-    end
-  end
 end

@@ -1,0 +1,24 @@
+<% content_for :page_content do %>
+<div class="distb lnav">
+  <div class="distc ltnav vat"><div><%= yield(:left_nav) %></div></div>
+  <div class="distc w100 vat"><div id="lib_content" class="disbl"><%= yield %></div></div>
+</div>
+<script>
+$(document).bind("ready ajaxComplete", function() {
+  $(".lnav-menu").unbind("click");
+  $(".lnav-menu").click(function() {
+    var url = $(this).attr("href");
+    $(".ltnav .active").removeClass("active");
+    $(this).closest("li").addClass("active");
+    $.ajax({
+      url: url,
+      success: function(data) {
+        $("#lib_content").html(data);
+      }
+    });
+    return false;
+  });
+});
+</script>
+<% end %>
+<%= render :file => 'layouts/page' %>

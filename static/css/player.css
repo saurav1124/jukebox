@@ -1,0 +1,133 @@
+.player .jp-audio {
+  width: 500px;
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 70px;
+}
+.player .jp-controls li {
+  display: block;
+  position: absolute;
+  left: 330px;
+  top: -7px;
+}
+.player .jp-controls > li > a {
+  position: absolute;
+  display: block;
+  text-indent: -9999px;
+  display: block;
+}
+.player .jp-controls .jp-stop {
+  left: 30px;
+}
+.player .jp-controls .jp-mute {
+  top: 8px;
+  left: 60px;
+}
+.player .jp-controls .jp-volume-max {
+  top: 8px;
+  left: 142px;
+}
+.player .jp-progress {
+  display: block;
+  width: 240px;
+  height: 10px;
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border-color: rgba(0,0,0,0.4) #F8F9F9 #F8F9F9 rgba(0,0,0,0.4);
+  border-style: solid;
+  border-width: 1px;
+  z-index: 20;
+  overflow: hidden;
+}
+.player .jp-progress .jp-seek-bar {
+  height: 10px;
+  width: 0;
+  background-color: #BBBBBB;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.player .jp-progress .jp-play-bar {
+  height: 10px;
+  width: 0;
+  background-color: #666666;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.player .jp-time-holder {
+  position: absolute;
+  display: block;
+  top: 17px;
+  left: 0;
+  width: 320px;
+}
+.player .jp-time-holder .jp-current-time {
+  font-size: 12px;
+  position: relative;
+  display: block;
+  float: left;
+}
+.player .jp-volume-bar {
+  position: absolute;
+  display: block;
+  top: 6px;
+  left: 406px;
+  width: 60px;
+  height: 6px;
+  background-color: #B4B5B5;
+}
+.player .jp-volume-bar .jp-volume-bar-value {
+  display: block;
+  background-color: #777777;
+  height: 6px;
+}
+.player .jp-time-holder .jp-duration {
+  font-size: 12px;
+  position: relative;
+  display: block;
+  float: right;
+}
+.player .art {
+  position: absolute;
+  display: block;
+  top: 10px;
+  left: 10px;
+}
+.player .art > div {
+  width: 42px;
+  height: 42px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.player .art > div > img {
+  display: block;
+  max-width: 42px;
+  max-height: 42px;
+  margin: auto;
+}
+.player .dtls {
+  position: absolute;
+  display: block;
+  width: 320px;
+  left: 70px;
+  top: 8px;
+}
+.player .dtls .ttl {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.3em;
+}
+.player .dtls .info {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1em;
+}

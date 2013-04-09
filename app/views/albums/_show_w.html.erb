@@ -1,0 +1,28 @@
+<div class="disbl p20 bdrb bg-w">
+  <div class="distb w100">
+    <div class="distc"><%= render "albums/th", :obj => @album %></div>
+    <div class="distc w100 pl20">
+      <div class="distb w100">
+        <div class="distc w100">
+          <span class="disbl fntw-b fnts-m1" style="margin-top:3px;"><%= @album.name %></span>
+          <span class="disbl"><%= @album.artist_names %></span>
+        </div>
+        <div class="distc nowrap">
+          <a class="play-album tipt" href="javascript:;" title="<%= t("label.play") %>"><i class="icon-play"></i></a>
+          <a class="play-album tipt" href="javascript:;" title="<%= t("label.add_to_playlist") %>"><i class="icon-playlist"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="disbl">
+  <%= render "tracks/grid", :tracks => @album.tracks, :nobdr => true %>
+</div>
+<script>
+$(document).ready(function() {
+  $(".play-album").click(function() {
+    jkCommon.playFirstTrack();
+    return false;
+  });
+});
+</script>

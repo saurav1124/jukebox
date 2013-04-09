@@ -1,0 +1,4 @@
+<% @title = t("txt.thank_you") %>
+<div class="thx" style="width:600px;">
+  <%= flash[:thanks].blank? ? t("txt.thank_you") : flash[:thanks] %>
+</div>

@@ -1,0 +1,25 @@
+<div class="disbl bdrb bg-w p10">
+  <div class="distb w100">
+    <div class="distc w100 pl20">
+      <div class="distb w100">
+        <div class="distc w100 vam">
+          <span class="disbl fntw-b fnts-m1" style="margin-top:3px;"><%= @artist.name %></span>
+        </div>
+        <div class="distc nowrap">
+          <a class="play-artist tipt" href="javascript:;" title="<%= t("label.play") %>"><i class="icon-play"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="disbl">
+  <%= render "tracks/grid", :tracks => @tracks, :nobdr => true %>
+</div>
+<script>
+$(document).ready(function() {
+  $(".play-artist").click(function() {
+    jkCommon.playFirstTrack();
+    return false;
+  });
+});
+</script>

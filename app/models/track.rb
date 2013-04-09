@@ -17,8 +17,7 @@ class Track < ActiveRecord::Base
                       :hash_secret => "airff3kc43kb9dcerl87bvelb7cbwl76rwek",
                       :default_url => APP_CONFIG['cdn_base_url'] + "/images/def_artwork.jpg"
 
-  before_save   :extract_metadata
-  before_create :set_uqid
+  before_create :set_uqid, :extract_metadata
   after_save    :process_media
   
   searchable :ignore_attribute_changes_of => [
@@ -101,7 +100,7 @@ private
         # artist
         artist_ids = []
         artist_names = tag.artist
-        artist_names.split(",").each do |name|
+        artist_names.split(/\s*&\s+|\s*,\s*|\s+&\s+|\s+and\s+/).each do |name|
           artist = Artist.where("name = ?", name.strip).first
           if artist == nil
             artist = Artist.new(:name => name.strip)
@@ -110,9 +109,16 @@ private
           artist_ids << artist.id
         end
         # album
-        album = Album.where("name = ?", tag.album.strip).first
+        album_name = tag.album
+        if album_name.blank?
+          album_name = "Singles"
+        else
+          album_name = album_name.strip
+        end
+        album = Album.where("name = ?", album_name).first
         if album == nil
-          album = Album.new(:name => tag.album.strip)
+          album = Album.new(:name => album_name)
+          album.user_id = self.user_id
           album.artwork_id = artwork.id
           album.save!
         end

@@ -1,15 +1,16 @@
+<% ts = "20130401" %>
 <head>
 <title><%= @title %></title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <%= stylesheet_link_tag    "application", :media => "all" %>
-<link href='http://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'></link>
-<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/css/bootstrap.min.css" %>
-<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/css/bootstrap-responsive.min.css" %>
-<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/base.css" %>
-<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/app.css" %>
-<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/high-res.css" %>
+<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/css/bootstrap.min.css?" + ts %>
+<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/css/bootstrap-responsive.min.css?" + ts %>
+<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/base.css?" + ts %>
+<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/app.css?" + ts %>
+<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/player.css?" + ts %>
 <%= javascript_include_tag "application" %>
 <%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/jquery/js/jquery.min.js" %>
+<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/jquery/js/jquery.jplayer.min.js" %>
 <%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/js/bootstrap.min.js" %>
 <%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/js/common.js" %>
 <%= csrf_meta_tags %>

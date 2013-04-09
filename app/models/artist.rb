@@ -4,9 +4,13 @@ class Artist < ActiveRecord::Base
 
   include ModelHelper
 
-  has_one       :artwork
+  belongs_to     :artwork
 
   before_create :set_uqid
+
+  def artwork_url
+    self.artwork ? self.artwork.urll : APP_CONFIG['cdn_base_url'] + "/images/def_user.png"
+  end
 
 private
 

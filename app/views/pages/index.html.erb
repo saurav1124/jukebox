@@ -1,15 +1,21 @@
 <% @title = t("title") %>
 <% @homePage = true %>
-<div class="home-bg"><%= image_tag APP_CONFIG['cdn_base_url'] + "/images/home/25855521.jpg" %></div>
-
-<div class="home-cp" style="z-index:-1;">
-  <span class="home-banner"><h1><%= t("txt.slogan") %></h1></span>
-  <span><%= t("txt.caption") %></span>
-  <form action="/search" method="get">
-  <div class="home-search">
-    <div class="w100 pr30"><%= text_field_tag :q, nil, :class => "w100", :placeholder => t("txt.search_prompt") %></div>
-    <div><%= submit_tag t("label.find"), :class => "btn btn-info", :name => nil %></div>
-  </div>
-  </form>
+<% @customMainClass = "homepp" %>
+<div class="pitch">
+<div class="slo1"><h1><%= t("txt.home_1") %></h1></div>
+<div class="slo2"><%= t("txt.home_2") %></div>
+<div class="disbl mt20">
+  <span class="disbl"><%= t("txt.req_invite") %></span>
+  <span class="disbl"><%= t("txt.req_friend") %></span>
+</div>
+<div class="disbl mt20">
+  <%= form_tag request_invite_path, :class => "form-inline" do %>
+    <%= email_field_tag :email, nil, :style => "", :placeholder => t("label.email") %>
+    <%= submit_tag t("txt.req_send"), :class => "btn btn-inverse btn-l", :style => "margin:0;" %>
+  <% end %>
+</div>
+<div class="disbl mt30"><div class="disbl pt20">
+  <span><%= t("txt.already_have_acc") %></span><%= link_to t("label.sign_in_here"), new_user_session_path, :class => "ml10" %>
+</div></div>
 </div>
 

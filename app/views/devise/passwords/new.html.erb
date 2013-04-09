@@ -5,7 +5,7 @@
     <%= devise_error_messages! %>
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
       <div class="disib"><%= f.email_field :email, :placeholder => t("label.email"), :class => "input-xlarge" %>
-      </div><div class="disib ml10"><%= f.submit t("label.forgot_pass_btn"), :class => "btn btn-info" %></div>
+      </div><div class="disib ml10"><%= f.submit t("label.forgot_pass_btn"), :class => "btn btn-info btn-l" %></div>
     <% end %>
   </div>
   <div class="disbl tac hlinks mt20"><%= render "devise/shared/links" %></div>

@@ -8,12 +8,36 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   
+  has_attached_file :photo, :styles => { :s => ["80x80#", :png], :m => ["200x200#", :png], :l => ["800x600>", :png] },
+                            :path => APP_CONFIG['photos_folder_path'] + "/:hash-:style.:extension",
+                            :url => APP_CONFIG['photos_base_url'] + "/:hash-:style.:extension",
+                            :hash_secret => "airff3kc43kb9dcerl87bvelb7cbwl76rwek",
+                            :default_url => APP_CONFIG['cdn_base_url'] + "/images/def_user.png"
+
+  validates_attachment_size :photo, :less_than => 500.kilobytes,
+                            :message => I18n.t("errors.photo_too_large", :size => "500KB")
+  validates_attachment_content_type :photo, 
+                                    :content_type => [
+                                      'image/jpeg',
+                                      'image/png',
+                                      'image/gif',
+                                      'image/pjpeg',
+                                      'image/x-png'
+                                     ],
+                            :message => I18n.t("errors.file_invalid_format", :formats => "JPG,GIF,PNG")
+
   after_create    :add_default_playlists
 
   DEFAULT_PLAYLISTS = [
     ["favorites", 12],
-    ["jukebox", 24]
+    ["recently_played", 24],
+    ["most_played", 28],
+    ["friends_listening", 36]
   ]
+  
+  def display_name
+    self.name
+  end
 
 private
 

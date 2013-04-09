@@ -2,7 +2,15 @@ class PagesController < ApplicationController
 
   layout :resolve_layout
 
-  def index
+  def home
+    @tracks = Track.limit(40)
+    plLimit = @tracks.count > 0 ? @tracks.count/2 : 10
+    plLimit = 10 if plLimit < 10
+    @playlists = Playlist.where("user_id = ?", current_user.id).order("syslist desc, order_no").limit(plLimit)
+    albLimit = @tracks.count > 0 ? (@tracks.count - plLimit) : 10
+    albLimit = 10 if albLimit < 10
+    @albums = Album.limit(albLimit)
+    @tmenu = "library"
   end
   
   def search
@@ -22,16 +30,19 @@ class PagesController < ApplicationController
     @albums = Album.all
   end
   
+  def request_invite
+    flash[:thanks] = t("txt.invite_req_thanks")
+    redirect_to thanks_path
+  end
+  
 private
 
   def resolve_layout
     case action_name
-    when "index"
-      return "home"
     when "home"
-      return "left_menu"
+      return "left_nav"
     else
-      return "main"
+      return "page"
     end
   end
 

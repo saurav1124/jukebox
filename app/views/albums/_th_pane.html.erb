@@ -1,11 +1,9 @@
 <ul class="thpn">
-<% albums.each do |album| %>
-  <li class="item">
-    <div class="disib vat"><%= render "albums/th", :obj => album %></div>
-    <div class="disib vat pl10">
-      <span class="disbl"><%= link_to album.name, album_path(album) %></span>
-      <span class="disbl"><%= album.artist_name %></span>
-    </div>
-  </li>
-<% end %>
+<% albums.each do |album| %><li>
+  <a href="<%= album_path(album.uqid) %>">
+    <div class="img"><%= image_tag album.artwork_url %></div>
+    <div class="ttl"><%= album.name %></div>
+    <div class="stxt"><%= album.artist_name %></div>
+  </a>
+</li><% end %>
 </ul>

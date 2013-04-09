@@ -13,6 +13,9 @@
 $(document).ready(function() {
   jkCommon.init();
 });
+$(document).bind("ready ajaxComplete", function() {
+  jkCommon.initAjax();
+});
 </script>
 </body>
 </html>

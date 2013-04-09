@@ -1,0 +1,15 @@
+<% @title = t("title") %>
+<% @homePage = true %>
+<div class="home-bg"><%= image_tag APP_CONFIG['cdn_base_url'] + "/images/home/25855521.jpg" %></div>
+
+<div class="home-cp" style="z-index:-1;">
+  <span class="home-banner"><h1><%= t("txt.slogan") %></h1></span>
+  <span><%= t("txt.caption") %></span>
+  <form action="/search" method="get">
+  <div class="home-search">
+    <div class="w100 pr30"><%= text_field_tag :q, nil, :class => "w100", :placeholder => t("txt.search_prompt") %></div>
+    <div><%= submit_tag t("label.find"), :class => "btn btn-info", :name => nil %></div>
+  </div>
+  </form>
+</div>
+

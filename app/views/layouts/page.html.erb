@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<%= render "layouts/head" %>
+<body class="<%= @customBodyClass %>" style="padding-top:0;">
+<div class="container"><div class="p10"><div class="mainp <%= @customMainClass %>"><div class="content">
+  <div class="topp">
+    <% if user_signed_in? %>
+    <div class="logo hide ml-play"><%= image_tag APP_CONFIG['cdn_base_url'] + "/images/logo-main-m.png" %></div>
+    <% end %>
+    <div class="play">
+      <div class="logo ml-no-play"><%= image_tag APP_CONFIG['cdn_base_url'] + "/images/logo-main-l.png" %></div>
+      <% if user_signed_in? %>
+      <div class="player ml-play" style="display:none;">
+        <div class="art"><div><img src=""></img></div></div>
+        <div class="dtls">
+          <span class="ttl"></span>
+          <span class="info"></span>
+        </div>
+        <div id="player_1" class="jp-jplayer"></div>
+        <div id="jp_container_1" class="jp-audio">
+          <ul class="jp-controls">
+            <li><a href="javascript:;" class="jp-play icon-play" tabindex="1">play</a></li>
+            <li><a href="javascript:;" class="jp-pause icon-pause" tabindex="1">pause</a></li>
+            <li><a href="javascript:;" class="jp-stop icon-stop" tabindex="1">stop</a></li>
+            <li><a href="javascript:;" class="jp-mute icon-small icon-vol-low" tabindex="1">mute</a></li>
+            <li><a href="javascript:;" class="jp-volume-max icon-small icon-vol-high" tabindex="1">max volume</a></li>
+          </ul>
+          <div class="jp-progress">
+            <div class="jp-seek-bar">
+              <div class="jp-play-bar"></div>
+            </div>
+          </div>
+          <div class="jp-time-holder">
+            <div class="jp-current-time"></div>
+            <div class="jp-duration"></div>
+          </div>
+          <div class="jp-volume-bar">
+            <div class="jp-volume-bar-value"></div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% if user_signed_in? %>
+    <a href="<%= account_path %>" class="usp">
+      <%= image_tag current_user.photo.url(:m), :alt => current_user.name %>
+    </a>
+    <% end %>
+  </div>
+  <% if user_signed_in? %>
+  <div class="topm">
+    <ul class="mns">
+      <li class="<%= @tmenu == "library" ? "active" : "" %>"><a href="<%= library_path %>"><%= t("label.library") %></a></li>
+      <li class="<%= @tmenu == "tracks" ? "active" : "" %>"><a href="<%= tracks_path %>"><%= t("label.tracks") %></a></li>
+      <li class="<%= @tmenu == "albums" ? "active" : "" %>"><a href="<%= albums_path %>"><%= t("label.albums") %></a></li>
+      <li class="<%= @tmenu == "artists" ? "active" : "" %>"><a href="<%= artists_path %>"><%= t("label.artists") %></a></li>
+      <li class="<%= @tmenu == "playlists" ? "active" : "" %>"><a href="<%= playlists_path %>"><%= t("label.playlists") %></a></li>
+    </ul>
+    <div class="sch">
+      <%= text_field_tag :term, params[:term], :placeholder => t("label.search") %>
+    </div>
+  </div>
+  <% end %>
+<div class="topfsh" style="display:none;"><a href="javascript:;" class="close" data-dismiss="topfsh">&times;</a></div>
+<%= content_for?(:page_content) ? yield(:page_content) : yield %>
+</div>
+<%= render "layouts/footer" %>
+</div></div></div>
+<script>
+$(document).ready(function() {
+  <% if user_signed_in? %>
+  $("#player_1").jPlayer({
+    swfPath: "<%= APP_CONFIG['cdn_base_url'] %>/jquery",
+    supplied: "mp3",
+    wmode: "window"
+  });
+  $("#player_1").bind($.jPlayer.event.ended, function(event) {
+    $(".curr-playing").removeClass("icon-vol-high");
+    $(".curr-playing").addClass("icon-blank");
+    setTimeout(function(){ $("#track_" + $(".player").attr("data-track")).find(".play-track").click() }, 1000);
+  });
+  <% end %>
+  $("body").click(function() {
+    jkCommon.destroyTrackPopover();
+  });
+});
+$(document).bind("ready ajaxComplete", function() {
+  <% if user_signed_in? %>
+  $(".play-track").unbind("click");
+  $(".play-track").click(function() {
+    jkCommon.destroyTrackPopover();
+    var track = $(this);
+    if (track.attr("data-playing") == undefined) {
+      var id = track.attr("data-id");
+      var detailUrl = track.attr("data-url");
+      $.ajax({
+        url: detailUrl,
+        success: function(data) {
+          $(".player").attr("data-track", id);
+          $(".player .dtls .ttl").text(data.title);
+          $(".player .dtls .info").text(data.artist + " - " + data.album);
+          $(".player .art img").attr("src", data.artwork.url);
+          $(".curr-playing").removeClass("icon-vol-high");
+          $(".curr-playing").addClass("icon-blank");
+          track.closest("li").find(".curr-playing").addClass("icon-vol-high");
+          $(".play-btn").removeClass("icon-stop-button")
+          track.find(".play-btn").addClass("icon-stop-button")
+          track
+          var url = data.media.mp3;
+          $(".ml-no-play").fadeOut("fast");
+          $(".ml-play").fadeIn("fast");
+          $("#player_1").jPlayer("setMedia", {
+            mp3: url
+          });
+          $("#player_1").jPlayer("play");
+          $(".play-track").removeAttr("data-playing");
+          track.attr("data-playing", "1");
+          track.find(".play-count").text(data.play_count);
+          track.find(".play-count").show();
+        }
+      });
+    } else {
+      $(".play-track").removeAttr("data-playing");
+      $(".curr-playing").removeClass("icon-vol-high");
+      $(".curr-playing").addClass("icon-blank");
+      $(".play-btn").removeClass("icon-stop-button")
+      $("#player_1").jPlayer("stop");
+    }
+    return false;
+  });
+  $("ul.trklst > li > div .mre").unbind("click");
+  $("ul.trklst > li > div .mre").click(function() {
+    if ($(this).hasClass("ppo")) {
+      jkCommon.destroyTrackPopover();
+    } else {
+      var id = $(this).closest("li").find(".play-track").attr("data-id");
+      $("#pl_trk_id").val(id);
+      jkCommon.destroyTrackPopover();
+      $(this).addClass("ppo");
+      $(this).popover({
+        placement: 'right',
+        title: '<span><%= t("label.add_to_playlist") %></span><a href=\"#\" class=\"close\">&times;</a>',
+        trigger: 'click',
+        html: true,
+        container: 'body',
+        content: function() {
+          return $("#po_playlists").html();
+        }
+      });
+      $(this).popover('show');
+      $(".popover .close").click(function() {
+        jkCommon.destroyTrackPopover();
+        return false;
+      });
+      $(".pl-add-track").click(function() {
+        jkCommon.destroyTrackPopover();
+        var plId = $(this).attr("data-id");
+        $.ajax({
+          url: "<%= playlists_path %>/" + plId + "/add_track",
+          type: "POST",
+          data: { trkid: $("#pl_trk_id").val() },
+          headers: { 'X-CSRF-Token': '<%= form_authenticity_token.to_s %>' },
+          success: function(data) {
+            jkCommon.showTopFlash(data.message);
+          }
+        })
+        return false;
+      });
+    }
+    event.stopPropagation();
+    return false;
+  });
+  $("#new_pl_name").unbind("focus click");
+  $("#new_pl_name").bind("focus click", function() {
+    return false;
+  });
+  <% end %>
+  jkCommon.init();
+  jkCommon.initAjax();
+});
+</script>
+<% if user_signed_in? %>
+<div class="hide" id="po_playlists">
+  <%= hidden_field_tag :track, nil, :id => "pl_trk_id" %>
+  <ul class="polnks">
+  <% my_playlists.each do |pl| %>
+  <li><a href="#" class="pl-add-track" data-id="<%= pl.id %>"><%= pl.display_name %></a></li>
+  <% end %>
+</ul></div>
+<% end %>
+</body>
+</html>

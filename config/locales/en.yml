@@ -10,14 +10,20 @@ en:
     log_in: Log In
     features: Features
     plans: Plans
+    library: Library
     album: Album
     albums: Albums
-    track: Track
-    tracks: Tracks
+    track: Song
+    tracks: Songs
     artist: Artist
     artists: Artists
     various_artists: Various Artists
+    playlists: Playlists
+    new_playlist: New Playlist
     browse: Browse
+    profile: Profile
+    delete: Delete
+    more: More ...
     email: Email
     password: Password
     signup_here: "Sign up here!"
@@ -25,11 +31,34 @@ en:
     forgot_password: Forgot password?
     sign_up: Create an Account
     sign_in: Sign In
+    sign_in_here: Sign in here
     sign_out: Sign Out
     forgot_pass_btn: "Send me instructions"
-    playlists: Playlists
+    new: New
+    add: Add
+    add_new: Add new
     home: Home
+    search: Search
+    play: Play
+    stop: Stop
+    pause: Pause
+    resume: Resume
+    enter_name: Enter name
+    enter_playlist_name: Enter playlist name
+    add_to_playlist: Add to playlist
+    change_password: Change Password
+    photo: Photo
+    friends: Friends
+  counts:
+    tracks:
+      one: "%{count} song"
+      other: "%{count} songs"
   txt:
+    home_1: "Share music with friends"
+    home_2: "and find out what they are listening to ..."
+    req_invite: "Request an invitation to join Miliea or"
+    req_friend: "ask a friend to send you an invitation."
+    req_send: "Send me invitation"
     slogan: "Music. Melody. Moment."
     caption: "What's on your mind? Let us play it for you ..."
     search_prompt: "e.g. Latest, Top 10, Kishore, Aashiq ..."
@@ -38,9 +67,18 @@ en:
     forgot_pass: "Forgot your password? You are not the first one ..."
     forgot_pass_msg: "To reset your password enter your email address below and we will send you instructions on how to create a new password."
     welcome_back: Welcome Back to Miliea!
+    thank_you: Thank You
+    invite_req_thanks: "Thanks you for requesting an invite. We will get back to you soon. Please click on the link we will email to join Miliea." 
+    already_have_acc: "Already have an account?"
+    trk_added_pl: "\"%{track}\" added to playlist \"%{playlist}\""
+    play_count:
+      one: "Played %{count} time by you & friends"
+      other: "Played %{count} times by you & friends"
   playlists:
     favorites: My Favorites
-    jukebox: Jukebox
+    recently_played: Recently Played
+    most_played: Most Played
+    friends_listening: Friends Listening
   errors:
     photo_too_large: "Selected photo is too large (max %{size})"
     file_invalid_format: "Invalid file format. (%{formats})"

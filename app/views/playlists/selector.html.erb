@@ -1,0 +1,5 @@
+<ul class="polnks">
+  <% @playlists.each do |pl| %>
+  <li><a href="javascript:;" class="pl-add-track" data-id="<%= pl.id %>"><%= pl.name %></a></li>
+  <% end %>
+</ul>

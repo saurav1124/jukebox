@@ -1,0 +1,8 @@
+<ul class="errs">
+  <% if !flash[:error].blank? %>
+  <li><%= flash[:error] %></li>
+  <% end %>
+  <% if !flash[:alert].blank? %>
+  <li><%= flash[:alert] %></li>
+  <% end %>
+</ul>

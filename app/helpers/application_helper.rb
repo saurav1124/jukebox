@@ -1,12 +1,12 @@
 module ApplicationHelper
 
-  def resource_name
-    :user
-  end
-
-  def resource
-    @resource ||= User.new
-  end
+  # def resource_name
+    # :user
+  # end
+# 
+  # def resource
+    # @resource ||= User.new
+  # end
 
   def sec_to_mins(seconds)
     # if seconds > 3600

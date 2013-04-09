@@ -1,0 +1,4 @@
+<% @title = current_user.name %>
+<%= content_for :left_nav do %>
+  <%= render "account/menu", :lmenu => "index" %>
+<% end %>

@@ -5,8 +5,7 @@ class Artwork < ActiveRecord::Base
   has_attached_file :photo, :styles => { :s => ["64x64>", :jpg],
                                          :m => ["128x128>", :jpg],
                                          :l => ["300x300>", :jpg],
-                                         :x => ["640x640>", :jpg]
-                                       },
+                                         :x => ["640x640>", :jpg] },
                             :path => APP_CONFIG['artwork_folder_path'] + "/:hash-:style.:extension",
                             :url => APP_CONFIG['artwork_base_url'] + "/:hash-:style.:extension",
                             :hash_secret => "airff3kc43kb9dcerl87bvelb7cbwl76rwek",

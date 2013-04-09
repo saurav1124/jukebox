@@ -1,83 +1,65 @@
 class PlaylistsController < ApplicationController
-  # GET /playlists
-  # GET /playlists.json
-  def index
-    @playlists = Playlist.all
+  
+  include PlaylistsHelper
 
+  layout :resolve_layout
+  
+  before_filter :check_signed_in!
+  
+  def add_track
+    # TODO: check playlist can edit
+    track = Track.find_by_uqid(params[:trkid])
+    playlist = Playlist.find(params[:id])
+    pl_track = PlaylistTrack.where("playlist_id = ? and track_id = ?", params[:id], track.id).first
+    max_plt = PlaylistTrack.where("playlist_id = ?", params[:id]).order("order_no desc").first
+    order_no = 1 if max_plt == nil
+    order_no = max_plt.order_no + 1 if max_plt != nil
+    if pl_track == nil
+      pl_track = PlaylistTrack.new
+      pl_track.playlist_id = params[:id]
+      pl_track.track_id = track.id
+      pl_track.order_no = order_no
+      pl_track.save!
+    end
+    render json: { status: 200, :message => t("txt.trk_added_pl", :track => track.title, :playlist => playlist.display_name)}
+  end
+  
+  def remove_track
+    # TODO: check playlist can edit
+    playlist = Playlist.find_by_uqid(params[:id])
+    track = Track.find_by_uqid(params[:trkid])
+    if playlist != nil && track != nil && can_edit_playlist(playlist)
+      pl_track = PlaylistTrack.where("playlist_id = ? and track_id = ?", playlist.id, track.id).first
+      pl_track.destroy
+    end
+    render json: { :status => 200, :message => "deleted" }
+  end
+
+  def add_album
+    
+  end
+  
+  def tracks
+    if params[:uqid].present?
+      @playlist = Playlist.find_by_uqid(params[:uqid])
+    else
+      @playlist = Playlist.find_by_uqid(params[:id])
+    end
+    render "playlists/tracks", :layout => false
+  end
+
+  def index
+    @playlists = Playlist.order("order_no")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @playlists }
     end
   end
 
-  # GET /playlists/1
-  # GET /playlists/1.json
-  def show
-    @playlist = Playlist.find(params[:id])
+private
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @playlist }
-    end
+  def resolve_layout
+    return "left_nav"
   end
 
-  # GET /playlists/new
-  # GET /playlists/new.json
-  def new
-    @playlist = Playlist.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @playlist }
-    end
-  end
-
-  # GET /playlists/1/edit
-  def edit
-    @playlist = Playlist.find(params[:id])
-  end
-
-  # POST /playlists
-  # POST /playlists.json
-  def create
-    @playlist = Playlist.new(params[:playlist])
-
-    respond_to do |format|
-      if @playlist.save
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
-        format.json { render json: @playlist, status: :created, location: @playlist }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /playlists/1
-  # PUT /playlists/1.json
-  def update
-    @playlist = Playlist.find(params[:id])
-
-    respond_to do |format|
-      if @playlist.update_attributes(params[:playlist])
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /playlists/1
-  # DELETE /playlists/1.json
-  def destroy
-    @playlist = Playlist.find(params[:id])
-    @playlist.destroy
-
-    respond_to do |format|
-      format.html { redirect_to playlists_url }
-      format.json { head :no_content }
-    end
-  end
 end

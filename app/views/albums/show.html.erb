@@ -1,12 +1,10 @@
 <% @title = @album.name + " - " + t("label.album") %>
-<div class="disbl pgpd">
-  <div class="distb">
-    <div class="distc vat">
-      <div class="disbl"><%= render "albums/th_large", :obj => @album %></div>
-      <div class="disbl mt10 fnts-l"><%= @album.name %></div>
-    </div>
-    <div class="distc w100 vat pl30">
-      <%= render "tracks/grid", :tracks => @album.tracks %>
-    </div>
-  </div>
-</div>
+<% content_for :left_nav do %>
+<ul class="nav nav-list">
+  <li class="nav-header"><%= t("label.albums") %></li>
+  <% @albums.each do |album| %>
+  <li class="<%= album.id == @album.id ? "active" : "" %>"><a href="<%= album_path(album.uqid) %>"><i class="icon-small icon-album"></i> <%= album.name %></a></li>
+  <% end %>
+</ul>
+<% end %>
+<%= render "albums/show_w" %>

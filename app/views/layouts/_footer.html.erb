@@ -1,7 +1,16 @@
-<div class="footer">
+<div class="footer <%= @homePage ? "footer-bottom" : "" %>">
   <span>&copy; 2013 Miliea</span>
+  <% if !user_signed_in? %>
   <div class="pull-right">
+  <% end %>
   <span>Privacy</span>
   <span>Terms</span>
+  <% if !user_signed_in? %>
   </div>
+  <% end %>
+  <% if user_signed_in? %>
+  <div class="pull-right">
+    <span><a href="<%= signout_path %>"><%= t("label.sign_out") %></a></span>
+  </div>
+  <% end %>
 </div>

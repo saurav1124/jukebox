@@ -1,14 +1,20 @@
-<div class="trkcont">
+<div class="trkcont <%= (defined? nobdr) && nobdr ? "nobdr" : "" %>">
   <ul class="trklst">
   <% tracks.each_with_index do |track,index| %>
-    <li><a id="track_<%= track.uqid %>" class="play-track" href="#" data-id="<%= track.uqid %>" data-url="<%= track.media_url %>" data-art="<%= track.art %>">
-      <div><span class="c1"><i class="icon-play-button play-btn"></i><span class="tno"><%= index + 1 %></span></span></div>
-      <div class="w100"><span class="title"><%= track.title %></span></div>
+    <li id="track_<%= track.uqid %>"><div>
+      <div><a class="play-track" href="javascript:;" data-id="<%= track.uqid %>" data-url="<%= details_track_path(track.uqid) %>">
+        <span class="c1"><i class="icon-play-button play-btn"></i></a><span class="tno"><%= index + 1 %></span></span></div>
+      <div class="w100"><span class="title"><%= track.title %>
+        <i class="opts mre icon-small icon-sm-arr-r"></i>
+        <% if (defined? showDelete) && showDelete %>
+        <i class="opts del icon-small icon-trash tipt" title="<%= t("label.delete") %>" data-id="<%= track.uqid %>"></i>
+        <% end %>
+        <%= render "tracks/play_count_badge", :track => track %></span></div>
       <div><span class="c2 artist"><%= track.artist_name %></span></div>
       <div style="<%= @showTrackAlbum ? "" : "display:none;" %>"><span class="c2 album"><%= track.album_name %></span></div>
       <div><span><%= sec_to_mins(track.track_length) %></span></div>
-      <div><span><i class="curr-playing icon-blank"></i></span></div>
-    </a></li>
+      <div><span><i class="curr-playing icon-small icon-blank"></i></span></div>
+    </div></li>
   <% end %>
   </ul>
 </div>

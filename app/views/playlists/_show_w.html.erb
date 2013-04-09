@@ -1,0 +1,42 @@
+<div class="disbl p20 bdrb bg-w">
+  <div class="distb w100">
+    <div class="distc"><i class="icon-playlist"></i></div>
+    <div class="distc w100 pl20">
+      <div class="distb w100">
+        <div class="distc w100">
+          <span class="disbl fntw-b fnts-m1" style="margin-top:3px;"><%= @playlist.display_name %></span>
+          <span class="disbl"><%= t("counts.tracks", :count => @playlist.tracks.count) %></span>
+        </div>
+        <div class="distc nowrap">
+          <a class="play-playlist tipt" href="javascript:;" title="<%= t("label.play") %>"><i class="icon-play"></i>
+          <% if !@playlist.syslist %>
+          </a><a class="del-playlist tipt" href="javascript:;" title="<%= t("label.delete") %>"><i class="icon-trash"></i>
+          <% end %>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="disbl">
+  <%= render "tracks/grid", :tracks => @playlist.tracks, :nobdr => true, :showDelete => can_edit_playlist(@playlist) %>
+</div>
+<script>
+$(document).ready(function() {
+  $(".trklst .del").click(function() {
+    $(this).tooltip("destroy");
+    var trkid = $(this).attr("data-id");
+    $.ajax({
+      url: "<%= remove_track_playlist_path(@playlist.uqid) %>",
+      type: "POST",
+      data: { trkid: trkid },
+      headers: { 'X-CSRF-Token': '<%= form_authenticity_token.to_s %>' },
+      success: function(data) {
+        alert("removed from playlist");
+        $("#track_" + trkid).remove();
+      }
+    });
+    return false;
+  });
+});
+</script>

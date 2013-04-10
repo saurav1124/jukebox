@@ -25,6 +25,19 @@ class Playlist < ActiveRecord::Base
     list_type < 100
   end
   
+  def icon
+    case list_type
+    when TYPE_FAVORITE
+      return "star"
+    when TYPE_RECENT_PLAYED, TYPE_MOST_PLAYED
+      return "fire"
+    when TYPE_FRIENDS_PLAYED
+      return "friends"
+    else
+      return "playlist"
+    end
+  end
+  
 private
 
   def set_uqid

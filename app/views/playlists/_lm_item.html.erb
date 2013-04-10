@@ -1,15 +1,1 @@
-<% if pl.syslist? %>
-<% if pl.name == "playlists.favorites" %>
-<li><a href="<%= tracks_playlist_path(pl.uqid) %>" class="lnav-menu"><i class="icon-small icon-star"></i> <%= pl.display_name %></a></li>
-<% elsif pl.name == "playlists.recently_played" %>
-<li><a href="<%= tracks_playlist_path(pl.uqid) %>" class="lnav-menu"><i class="icon-small icon-fire"></i> <%= pl.display_name %></a></li>
-<% elsif pl.name == "playlists.most_played" %>
-<li><a href="<%= tracks_playlist_path(pl.uqid) %>" class="lnav-menu"><i class="icon-small icon-fire"></i> <%= pl.display_name %></a></li>
-<% elsif pl.name == "playlists.friends_listening" %>
-<li><a href="<%= tracks_playlist_path(pl.uqid) %>" class="lnav-menu"><i class="icon-small icon-friends"></i> <%= pl.display_name %></a></li>
-<% else %>
-<li><a href="<%= tracks_playlist_path(pl.uqid) %>" class="lnav-menu"><i class="icon-small icon-playlist"></i> <%= pl.display_name %></a></li>
-<% end %>
-<% else %>
-<li><a href="<%= tracks_playlist_path(pl.uqid) %>" class="lnav-menu"><i class="icon-small icon-playlist"></i> <%= pl.display_name %></a></li>
-<% end %>
+<li><a href="<%= tracks_playlist_path(pl.uqid) %>" class="lnav-menu"><i class="icon-small icon-<%= pl.icon %>"></i> <%= pl.display_name %></a></li>

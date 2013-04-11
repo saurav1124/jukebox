@@ -1,8 +1,8 @@
 <div class="trkcont <%= (defined? nobdr) && nobdr ? "nobdr" : "" %>">
   <ul class="trklst">
   <% tracks.each_with_index do |track,index| %>
-    <li id="track_<%= track.uqid %>"><div>
-      <div><a class="play-track" href="javascript:;" data-id="<%= track.uqid %>" data-url="<%= details_track_path(track.uqid) %>">
+    <li id="track_<%= track.uqid %>" class=""><div>
+      <div><a id="tk<%= track.uqid %>" class="play-track" href="javascript:;" data-id="<%= track.uqid %>" data-url="<%= details_track_path(track.uqid) %>">
         <span class="c1"><i class="icon-play-button play-btn"></i></a><span class="tno"><%= index + 1 %></span></span></div>
       <div class="w100"><span class="title"><%= track.title %>
         <i class="opts mre icon-small icon-sm-arr-r"></i>
@@ -13,7 +13,7 @@
       <div><span class="c2 artist"><%= track.artist_name %></span></div>
       <div style="<%= !@hideAlbums ? "" : "display:none;" %>"><span class="c2 album"><%= track.album_name %></span></div>
       <div><span><%= sec_to_mins(track.track_length) %></span></div>
-      <div><span><i class="curr-playing icon-small icon-blank"></i></span></div>
+      <div><span><i class="icon-small icon-playing"></i></span></div>
     </div></li>
   <% end %>
   </ul>

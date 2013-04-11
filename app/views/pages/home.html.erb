@@ -17,7 +17,7 @@
 <ul class="nav nav-list">
   <li class="nav-header"><%= t("label.albums") %></li>
   <% @albums.each do |album| %>
-  <li><a href="<%= tracks_album_path(album.uqid) %>" class="lnav-menu"><i class="icon-small icon-album"></i> <%= album.name %></a></li>
+  <li><a id="ln<%= album.uqid %>" data-id="<%= album.uqid %>" href="<%= tracks_album_path(album.uqid) %>" class="lnav-menu"><i class="icon-small icon-album"></i> <%= album.name %></a></li>
   <% end %>
 </ul>
 </div>

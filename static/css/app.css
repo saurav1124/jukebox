@@ -455,3 +455,13 @@ ul.polnks li a:hover {
   margin-right: -12px;
   margin-top: -3px;
 }
+.icon-playing {
+  background-position: 8000px 2000px;
+}
+.playing .icon-play-button {
+  background-position: -38px 2px;
+}
+.playing .icon-playing {
+  background-position: -80px -20px;
+}
+

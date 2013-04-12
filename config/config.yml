@@ -1,35 +1,35 @@
 development:
   cdn_base_url: http://localhost:3000/static
   photos_base_url: http://localhost:3000/photos
-  photos_folder_path: /Users/saurav/dev/data/jukebox/photos
+  photos_folder_path: /mnt/jukebox/data/photos
   artwork_base_url: http://localhost:3000/artworks
-  artwork_folder_path: /Users/saurav/dev/data/jukebox/artworks
+  artwork_folder_path: /mnt/jukebox/data/artworks
   media_base_url: http://localhost:3000/media
-  media_folder_path: /Users/saurav/dev/data/jukebox/media
+  media_folder_path: /mnt/jukebox/data/media
 
 test:
   photos_base_url: http://localhost:3000/photos
-  photos_folder_path: /Users/saurav/dev/data/jukebox/photos
+  photos_folder_path: /mnt/jukebox/data/photos
   cdn_base_url: http://cn/wkt/static  
   artwork_base_url: http://localhost:3000/artworks
-  artwork_folder_path: /Users/saurav/dev/data/jukebox/artworks
+  artwork_folder_path: /mnt/jukebox/data/artworks
   media_base_url: http://localhost:3000/media
-  media_folder_path: /Users/saurav/dev/data/jukebox/media
+  media_folder_path: /mnt/jukebox/data/media
 
 staging:
   photos_base_url: http://localhost:3000/photos
-  photos_folder_path: /Users/saurav/dev/data/jukebox/photos
+  photos_folder_path: /mnt/jukebox/data/photos
   cdn_base_url: http://staging/static
   artwork_base_url: http://localhost:3000/artworks
-  artwork_folder_path: /Users/saurav/dev/data/jukebox/artworks
+  artwork_folder_path: /mnt/jukebox/data/artworks
   media_base_url: http://localhost:3000/media
-  media_folder_path: /Users/saurav/dev/data/jukebox/media
+  media_folder_path: /mnt/jukebox/data/media
 
 production:
   photos_base_url: http://localhost:3000/photos
-  photos_folder_path: /Users/saurav/dev/data/jukebox/photos
+  photos_folder_path: /mnt/jukebox/data/photos
   cdn_base_url: http://production/static
   artwork_base_url: http://localhost:3000/artworks
-  artwork_folder_path: /Users/saurav/dev/data/jukebox/artworks
+  artwork_folder_path: /mnt/jukebox/data/artworks
   media_base_url: http://localhost:3000/media
-  media_folder_path: /Users/saurav/dev/data/jukebox/media
+  media_folder_path: /mnt/jukebox/data/media

@@ -7,18 +7,8 @@
 $(document).bind("ready ajaxComplete", function() {
   $(".lnav-menu").unbind("click");
   $(".lnav-menu").click(function() {
-  	var lnav = $(this);
-    var url = $(this).attr("href");
-    $(".ltnav .active").removeClass("active");
-    $(this).closest("li").addClass("active");
-    $.ajax({
-      url: url,
-      success: function(data) {
-        $("#lib_content").html(data);
-        jkCommon.addHash(0, lnav.attr("data-id"));
-        jkCommon.playHashTrack();
-      }
-    });
+  	jkCommon.loadLeftNavBody($(this));
+    jkCommon.setPageTitle($(this).attr("data-title"));
     return false;
   });
 });

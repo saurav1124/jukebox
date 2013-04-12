@@ -30,6 +30,9 @@ var jkCommon = new (function() {
     $(".topfsh").slideDown();
     setTimeout(function() { $(".topfsh").slideUp(); }, 5000 );
   };
+  this.setPageTitle = function(title) {
+  	document.title = title + " - Miliea";
+  };
   this.addHash = function(idx, str) {
   	var currHash = location.hash.split('!');
   	var newHash = new Array();
@@ -71,7 +74,7 @@ var jkCommon = new (function() {
       var hashes = location.hash.split('!');
       if (hashes.length > 1) {
         if (hashes[1] != "") {
-          $("#ln" + hashes[1]).click();
+          jkCommon.loadLeftNavBody($("#ln" + hashes[1]));
         }
       }
     }
@@ -91,32 +94,33 @@ var jkCommon = new (function() {
   	var track = $("#tk" + id);
     if (track != undefined) {
       if (track.attr("data-playing") == undefined) {
-      var id = track.attr("data-id");
-      var detailUrl = track.attr("data-url");
-      $.ajax({
-        url: detailUrl,
-        success: function(data) {
-          $(".player").attr("data-track", id);
-          $(".player .dtls .ttl").text(data.title);
-          $(".player .dtls .info").text(data.artist + " - " + data.album);
-          $(".player .art img").attr("src", data.artwork.url);
-
-          track.closest("ul").find("li").removeClass("playing");
-          track.closest("li").addClass("playing");
-          $(".play-track").removeAttr("data-playing");
-          track.attr("data-playing", "1");
-          track.closest("li").find(".play-count").text(data.play_count);
-          track.closest("li").find(".play-count").show();
-          jkCommon.addHash(1, id);
-
-          var url = data.media.mp3;
-          $(".ml-no-play").fadeOut("fast");
-          $(".ml-play").fadeIn("fast");
-          $("#player_1").jPlayer("setMedia", {
-            mp3: url
-          });
-          $("#player_1").jPlayer("play");
-        }
+        var id = track.attr("data-id");
+        var detailUrl = track.attr("data-url");
+        $.ajax({
+          url: detailUrl,
+          success: function(data) {
+            $(".player").attr("data-track", id);
+            $(".player .dtls .ttl").text(data.title);
+            $(".player .dtls .info").text(data.artist + " - " + data.album);
+            $(".player .art img").attr("src", data.artwork.url);
+  
+            track.closest("ul").find("li").removeClass("playing");
+            track.closest("li").addClass("playing");
+            $(".play-track").removeAttr("data-playing");
+            track.attr("data-playing", "1");
+            track.closest("li").find(".play-count").text(data.play_count);
+            track.closest("li").find(".play-count").show();
+            jkCommon.addHash(1, id);
+            jkCommon.setPageTitle(track.attr("data-title"));
+  
+            var url = data.media.mp3;
+            $(".ml-no-play").fadeOut("fast");
+            $(".ml-play").fadeIn("fast");
+            $("#player_1").jPlayer("setMedia", {
+              mp3: url
+            });
+            $("#player_1").jPlayer("play");
+          }
         });
       } else {
         $(".play-track").removeAttr("data-playing");
@@ -124,5 +128,18 @@ var jkCommon = new (function() {
         $("#player_1").jPlayer("stop");
       }
     }
+  };
+  this.loadLeftNavBody = function(lnav) {
+    var url = lnav.attr("href");
+    $(".ltnav .active").removeClass("active");
+    lnav.closest("li").addClass("active");
+    $.ajax({
+      url: url,
+      success: function(data) {
+        $("#lib_content").html(data);
+        jkCommon.addHash(0, lnav.attr("data-id"));
+        jkCommon.playHashTrack();
+      }
+    });
   }
 });

@@ -19,5 +19,5 @@
 /public/static
 /public/artworks
 /public/media
+/public/photos
 *.bak
-.DS_Store

@@ -2,7 +2,7 @@
   <ul class="trklst">
   <% tracks.each_with_index do |track,index| %>
     <li id="track_<%= track.uqid %>" class=""><div>
-      <div><a id="tk<%= track.uqid %>" class="play-track" href="javascript:;" data-id="<%= track.uqid %>" data-url="<%= details_track_path(track.uqid) %>">
+      <div><a id="tk<%= track.uqid %>" class="play-track" href="javascript:;" data-id="<%= track.uqid %>" data-title="<%= track.title %>" data-url="<%= details_track_path(track.uqid) %>">
         <span class="c1"><i class="icon-play-button play-btn"></i></a><span class="tno"><%= index + 1 %></span></span></div>
       <div class="w100"><span class="title"><%= track.title %>
         <i class="opts mre icon-small icon-sm-arr-r"></i>

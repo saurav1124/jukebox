@@ -76,11 +76,11 @@ private
   end
   
   def audio?
-    media_content_type =~ %r{^audio/(?:mp3|mpeg|mpeg3|mpg|x-mp3|x-mpeg|x-mpeg3|x-mpegaudio|x-mpg)$}
+    media_content_type =~ %r{^audio/(?:mp3|mpeg|mpeg3|mpg|x-mp3|x-mpeg|x-mpeg3|x-mpegaudio|x-mpg|m4a|MP4A)$}
   end
 
   def extract_metadata
-    return unless audio?
+    #return unless audio?
     if media != nil
       path = media.queued_for_write[:original].path
       # artwork

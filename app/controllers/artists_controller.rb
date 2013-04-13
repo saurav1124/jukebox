@@ -12,9 +12,13 @@ class ArtistsController < ApplicationController
                                       :group => "artist_id",
                                       :order => "track_count desc",
                                       :limit => 10)
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @artists }
+    if request.headers["top-menu"]
+      render "artists/index", :layout => "left_nav_partial"
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @artists }
+      end
     end
   end
 

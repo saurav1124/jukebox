@@ -50,9 +50,13 @@ class PlaylistsController < ApplicationController
 
   def index
     @playlists = Playlist.where("user_id = ?", current_user.id).order("order_no")
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @playlists }
+    if request.headers["top-menu"]
+      render "playlists/index", :layout => "left_nav_partial"
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @playlists }
+      end
     end
   end
 

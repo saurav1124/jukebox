@@ -7,9 +7,13 @@ class AlbumsController < ApplicationController
   def index
     @tmenu = "albums"
     @albums = Album.where("user_id = ?", current_user.id).order("name")
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @albums }
+    if request.headers["top-menu"]
+      render "albums/index", :layout => false
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @albums }
+      end
     end
   end
 

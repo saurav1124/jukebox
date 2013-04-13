@@ -38,10 +38,19 @@ class TracksController < ApplicationController
 
   def index
     @tmenu = "tracks"
+    @albums = Album.all(
+      :include => "tracks",
+      :conditions => ["albums.user_id = ?", current_user.id],
+      :order => "albums.name"
+    )
     @tracks = Track.where("user_id = ?", current_user.id).order("play_count desc")
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @tracks }
+    if request.headers["top-menu"]
+      render "tracks/index", :layout => false
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @tracks }
+      end
     end
   end
 

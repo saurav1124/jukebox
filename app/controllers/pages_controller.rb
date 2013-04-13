@@ -13,6 +13,9 @@ class PagesController < ApplicationController
     albLimit = 10 if albLimit < 10
     @albums = Album.limit(albLimit)
     @tmenu = "library"
+    if request.headers["top-menu"]
+      render "pages/home", :layout => "left_nav_partial"
+    end
   end
   
   def search

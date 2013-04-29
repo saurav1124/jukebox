@@ -1,0 +1,59 @@
+<% @title = t("label.upload_music") %>
+<% content_for :head do %>
+<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/js/jquery.ui.widget.min.js" %>
+<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/js/jquery.iframe-transport.js" %>
+<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/js/jquery.fileupload.js" %>
+<% end %>
+<div class="topfsh red fixed-top"><%= t("txt.win_close_upload")%></div>
+<div style="padding-top:22px;">
+<ul class="lst"><li><div>
+<div style="width:100px;"><%= image_tag APP_CONFIG['cdn_base_url'] + "/images/logo-main-l.png", :style => "width:90px;" %></div>
+<div class="w100"></div>
+<div><div class="disbl pt10 pb10">
+  <%= form_tag "/", :multipart => true, :id => "import_music" do %>
+  <%= fields_for @track, :multipart => true do |f| %>
+  <span class="btn btn-inverse btn-l fu-btn">
+    <span><%= t("label.add_files") %></span>
+    <%= f.file_field :media, :multiple => true, :name => "track[media]" %>
+  </span>
+  <% end %>
+  <% end %>
+</div></div>
+</div></li></ul>
+<div id="files" class="disbl"><ul class="lst">
+</ul></div>
+</div>
+<div id="help-txt" class="disbl p10 tac">
+  <span class="disbl"><%= t("txt.select_files_disk")%></span>
+  <span class="disbl"><%= t("txt.drag_drop_files")%></span>
+</div>
+<script>
+$(document).ready(function() {
+  $()
+  $('#import_music').fileupload({
+    url: 'import',
+    limitConcurrentUploads: 3,
+    add: function (e, data) {
+      $.each(data.files, function (index, file) {
+        var id = jkCommon.nameToId(file.name);
+        if (!jkCommon.exist("#" + id)) {
+          $("#files .lst").append('<li id="' + id + '"><div><div class="w100">' + file.name + '</div>' + 
+                                  '<div><div class="progress" style="width:60px;"><div class="bar" style="width: 0%;"></div></div></div>' +
+                                  '</div></li>');
+        } else {
+          $("#" + id + " .progress .bar").css("width", "0%");
+        }
+      });
+      $("#help-txt").addClass("fixed-bottom").addClass("bdrt");
+      data.submit();
+    },
+    progress: function (e, data) {
+      var progress = Math.floor(data.loaded / data.total * 100);
+      $.each(data.files, function (index, file) {
+        var id = jkCommon.nameToId(file.name);
+        $("#" + id + " .progress .bar").css("width", progress + "%");
+      });
+    }
+  });
+});
+</script>

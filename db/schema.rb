@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409050209) do
+ActiveRecord::Schema.define(:version => 20130429153119) do
 
   create_table "album_artists", :force => true do |t|
     t.integer  "album_id",   :null => false
@@ -97,6 +97,34 @@ ActiveRecord::Schema.define(:version => 20130409050209) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "friend_requests", :force => true do |t|
+    t.integer  "user_id",      :null => false
+    t.integer  "from_user_id", :null => false
+    t.string   "invite_token"
+    t.integer  "status",       :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "friend_requests", ["from_user_id"], :name => "index_friend_requests_on_from_user_id"
+  add_index "friend_requests", ["invite_token"], :name => "index_friend_requests_on_invite_token"
+  add_index "friend_requests", ["user_id", "from_user_id"], :name => "index_friend_requests_on_user_id_and_from_user_id", :unique => true
+  add_index "friend_requests", ["user_id", "status"], :name => "index_friend_requests_on_user_id_and_status"
+  add_index "friend_requests", ["user_id"], :name => "index_friend_requests_on_user_id"
+
+  create_table "friends", :force => true do |t|
+    t.integer  "me_id",                     :null => false
+    t.integer  "user_id",                   :null => false
+    t.integer  "status",     :default => 0, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "friends", ["me_id", "status"], :name => "index_friends_on_me_id_and_status"
+  add_index "friends", ["me_id", "user_id"], :name => "index_friends_on_me_id_and_user_id", :unique => true
+  add_index "friends", ["me_id"], :name => "index_friends_on_me_id"
+  add_index "friends", ["user_id"], :name => "index_friends_on_user_id"
+
   create_table "playlist_tracks", :force => true do |t|
     t.integer  "playlist_id", :null => false
     t.integer  "track_id",    :null => false
@@ -166,6 +194,7 @@ ActiveRecord::Schema.define(:version => 20130409050209) do
     t.integer  "user_id",                                          :null => false
     t.datetime "last_played_at"
     t.integer  "play_count",                        :default => 0, :null => false
+    t.string   "fingerprint",                                      :null => false
   end
 
   add_index "tracks", ["album_id", "album_index"], :name => "index_tracks_on_album_id_and_album_index"
@@ -178,6 +207,7 @@ ActiveRecord::Schema.define(:version => 20130409050209) do
   add_index "tracks", ["title"], :name => "index_tracks_on_title", :length => {"title"=>255}
   add_index "tracks", ["uqid"], :name => "index_tracks_on_uqid", :unique => true
   add_index "tracks", ["url"], :name => "index_tracks_on_url", :length => {"url"=>255}
+  add_index "tracks", ["user_id", "fingerprint"], :name => "index_tracks_on_user_id_and_fingerprint"
   add_index "tracks", ["user_id"], :name => "index_tracks_on_user_id"
 
   create_table "user_tracks", :force => true do |t|

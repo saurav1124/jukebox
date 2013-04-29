@@ -5,7 +5,7 @@ class Track < ActiveRecord::Base
   include ModelHelper
 
   attr_accessible :title, :composer_id, :album_id, :album_index, :track_length,
-                  :year, :released_dt, :rating
+                  :year, :released_dt, :rating, :media
 
   has_many        :artists, :class_name => "TrackArtist", :autosave => true
   belongs_to      :album
@@ -64,24 +64,14 @@ class Track < ActiveRecord::Base
 
   handle_asynchronously :process_media
 
-private
-
-  def set_uqid
-    self.uqid = gen_unique_key_for_model(16)
-    self.url = "/t/" + self.uqid
-  end
-
-  def index_artist_names
-    self.artists.map( &:name )
+  def gen_fingerprint(track)
+    fp = track.name + track.album.name + track.attributes["media_content_type"] + track.attributes["media_file_name"] + track.attributes["media_file_size"].to_s
+    Base64.encode64(fp)
   end
   
-  def audio?
-    media_content_type =~ %r{^audio/(?:mp3|mpeg|mpeg3|mpg|x-mp3|x-mpeg|x-mpeg3|x-mpegaudio|x-mpg|m4a|MP4A)$}
-  end
-
   def extract_metadata
     #return unless audio?
-    if media != nil
+    if media != nil && self.album_id == nil
       path = media.queued_for_write[:original].path
       # artwork
       artwork = Artwork.new
@@ -137,6 +127,7 @@ private
         self.track_no = tag.track.to_i
         self.genre = tag.genre
         self.artwork_id = artwork.id
+        self.fingerprint = gen_fingerprint(self)
         #tag.comment
         properties = fileref.audio_properties
         self.track_length = properties.length
@@ -149,6 +140,21 @@ private
         end
       end
     end
+  end
+
+private
+
+  def set_uqid
+    self.uqid = gen_unique_key_for_model(16)
+    self.url = "/t/" + self.uqid
+  end
+
+  def index_artist_names
+    self.artists.map( &:name )
+  end
+  
+  def audio?
+    media_content_type =~ %r{^audio/(?:mp3|mpeg|mpeg3|mpg|x-mp3|x-mpeg|x-mpeg3|x-mpegaudio|x-mpg|m4a|MP4A)$}
   end
 
 end

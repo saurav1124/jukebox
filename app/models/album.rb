@@ -7,7 +7,7 @@ class Album < ActiveRecord::Base
   belongs_to      :artwork
   has_many        :artists, :class_name => "AlbumArtist"
   has_many        :tracks, :order => :track_no
-
+  
   before_create :set_uqid
   
   def to_param

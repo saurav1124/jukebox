@@ -2,16 +2,22 @@ class PagesController < ApplicationController
 
   layout :resolve_layout
   
-  before_filter :check_signed_in!, :except => [:index, :request_invite]
+  before_filter :check_signed_in!, :except => [:index, :request_invite, :accept_invite]
+  
+  def index
+    if user_signed_in?
+      redirect_to home_path
+    end
+  end
   
   def home
-    @tracks = Track.limit(40)
+    @tracks = Track.where("user_id = ?", current_user.id).limit(40)
     plLimit = @tracks.count > 0 ? @tracks.count/2 : 10
     plLimit = 10 if plLimit < 10
     @playlists = Playlist.where("user_id = ?", current_user.id).order("list_type, order_no").limit(plLimit)
     albLimit = @tracks.count > 0 ? (@tracks.count - plLimit) : 10
     albLimit = 10 if albLimit < 10
-    @albums = Album.limit(albLimit)
+    @albums = Album.where("user_id = ?", current_user.id).limit(albLimit)
     @tmenu = "library"
     if request.headers["top-menu"]
       render "pages/home", :layout => "left_nav_partial"
@@ -38,6 +44,11 @@ class PagesController < ApplicationController
   def request_invite
     flash[:thanks] = t("txt.invite_req_thanks")
     redirect_to thanks_path
+  end
+  
+  def accept_invite
+    session[:fr_token] = params[:token]
+    redirect_to new_registration_path(resource_name)
   end
   
 private

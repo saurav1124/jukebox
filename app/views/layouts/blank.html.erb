@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<%= render "layouts/head" %>
+<style>
+body {
+  background: #FFFFFF;
+  padding: 0;
+  margin: 0;
+}
+</style>
+<body>
+<%= yield %>
+<script>
+$(document).ready(function() {
+  jkCommon.init();
+});
+$(document).bind("ready ajaxComplete", function() {
+  jkCommon.initAjax();
+});
+</script>
+</body>
+</html>

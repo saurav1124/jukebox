@@ -1,0 +1,25 @@
+<ul class="lst nolst">
+  <% @requests.each do |r| %>
+  <li><div>
+    <div class="uth"><%= image_tag r.user.photo.url(:m) %></div>
+    <div class="w100"><%= r.from_user.name %></div>
+    <div class="nowrap"><a href="<%= accept_invite_path %>/<%= r.invite_token %>" data-token="<%= r.invite_token %>" class="tm-accept-friend btn btn-success"><%= t("label.accept")%>
+    </a> <a href="#" class="btn"><i class="icon-plus icon-small"></i></a></div>
+  </div></li>
+  <% end %>
+</ul>
+<script>
+$(document).ready(function() {
+  $(".tm-accept-friend").click(function() {
+    var req = $(this);
+    $.ajax({
+      url: "<%= accept_friend_path() %>/" + req.attr("data-token"),
+      success: function(data) {
+        jkCommon.checkFriendRequest();
+        req.closest("li").fadeOut();
+      }
+    });
+    return false;
+  });
+});
+</script>

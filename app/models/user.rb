@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
                             :message => I18n.t("errors.file_invalid_format", :formats => "JPG,GIF,PNG")
 
   after_create    :add_default_playlists
-
+  
   DEFAULT_PLAYLISTS = [
     ["favorites", 12, Playlist::TYPE_FAVORITE],
     ["recently_played", 24, Playlist::TYPE_RECENT_PLAYED],

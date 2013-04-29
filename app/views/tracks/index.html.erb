@@ -1,8 +1,23 @@
 <% @title = t("label.tracks") %>
-<div>
+<ul class="blst albtrks">
   <% @albums.each do |album| %>
-  <div class="disbl">
-    <%= render "albums/th", :obj => album %>
-  </div>
+    <li class="">
+      <div class="albth">
+        <% if album.tracks.count > 3 %>
+        <%= render "albums/th_m", :obj => album %>
+        <% else %>
+        <div class="th blank"></div>
+        <% end %>
+      </div>
+      <div class="albnm">
+        <span class="nm"><%= album.name %></span>
+        <% album.artists.each do |artist| %>
+        <span><%= artist.name %></span>
+        <% end %>
+      </div>
+      <div class="w100">
+        <%= render "tracks/grid", :tracks => album.tracks, :nobdr => true, :showDelete => can_edit_album(album) %>
+      </div>
+    </li>
   <% end %>
-</div>
+</ul>

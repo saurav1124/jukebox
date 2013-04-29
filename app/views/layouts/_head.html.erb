@@ -1,6 +1,6 @@
-<% ts = "20130401" %>
+<% ts = "20130430" %>
 <head>
-<title><%= @title %></title>
+<title><%= @title + " - " + t("title") %></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <%= stylesheet_link_tag    "application", :media => "all" %>
 <%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/css/bootstrap.min.css?" + ts %>
@@ -8,11 +8,14 @@
 <%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/base.css?" + ts %>
 <%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/app.css?" + ts %>
 <%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/player.css?" + ts %>
+<% if @custom_css_files != nil %><% @custom_css_files.each do |f| %>
+<%= stylesheet_link_tag APP_CONFIG['cdn_base_url'] + "/css/" + f + ".css?" + ts %>
+<% end %><% end %>
 <%= javascript_include_tag "application" %>
-<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/jquery/js/jquery.min.js" %>
-<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/jquery/js/jquery.jplayer.min.js" %>
-<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/js/bootstrap.min.js" %>
 <%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/js/common.js" %>
+<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/js/jquery.min.js" %>
+<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/js/jquery.jplayer.min.js" %>
+<%= javascript_include_tag APP_CONFIG['cdn_base_url'] + "/bootstrap/js/bootstrap.min.js" %>
 <%= csrf_meta_tags %>
 <%= yield(:head) %>
 </head>

@@ -1,0 +1,11 @@
+development:
+  access_key_id: AKIAJYZBPOUDPS6VMP4A
+  secret_access_key: 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
+
+test:
+  access_key_id: AKIAJYZBPOUDPS6VMP4A
+  secret_access_key: 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
+
+production:
+  access_key_id: AKIAJYZBPOUDPS6VMP4A
+  secret_access_key: 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

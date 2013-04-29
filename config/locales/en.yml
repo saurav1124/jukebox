@@ -4,6 +4,7 @@
 en:
   title: "Miliea"
   label:
+    name: Name
     get_prod: Get Miliea
     find: Find
     search: Search
@@ -49,6 +50,13 @@ en:
     change_password: Change Password
     photo: Photo
     friends: Friends
+    send_invite: Send Invitation
+    confirm: Confirm
+    accept: Accept
+    zero_no: "No"
+    upload_music: Upload Music
+    import_music: Import your music
+    add_files: Add files ...
   counts:
     tracks:
       one: "%{count} song"
@@ -74,11 +82,21 @@ en:
     play_count:
       one: "Played %{count} time by you & friends"
       other: "Played %{count} times by you & friends"
+    accept_friend: "You are now friends with %{name}."
+    welcome_accept_friend: "Welcome to Miliea! You are now friends with %{name}."
+    friend_requests: "You have %{count} friend requests"
+    win_close_upload: "Do not close this window while your music is being uploaded."
+    select_files_disk: "Select files from your disk."
+    drag_drop_files: "You can also drag and drop the files into this window."
   playlists:
     favorites: My Favorites
     recently_played: Recently Played
     most_played: Most Played
     friends_listening: Friends Listening
+  email:
+    invite_friend:
+      subject: "%{name} has invited you to listen to music on Miliea"
   errors:
     photo_too_large: "Selected photo is too large (max %{size})"
     file_invalid_format: "Invalid file format. (%{formats})"
+

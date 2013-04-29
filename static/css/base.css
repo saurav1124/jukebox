@@ -1,14 +1,10 @@
 body {
   background-color: #666666;
-  font-size: 13px;
+  font-size: 12px;
   font-family: "Lucida Grande","Helvetica Neue",Helvetica;
   text-shadow: -1px 1px 1px rgba(255,255,255,1);
   color: #333333;
   line-height: 1.3em;
-}
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-  padding: 10px 10px;  
-  font-size: 14px;
 }
 h1, h2, h3, h4 { padding: 0; margin: 0; }
 h1 { font-size: 24px; }
@@ -359,6 +355,27 @@ html[xmlns] .clearfix {
   vertical-align: middle;
   text-align: center;
 }
+ul.lst {
+}
+ul.lst > li {
+  border-bottom: 1px solid #DDDDDD;
+}
+ul.nolst > li:last-child {
+  border-bottom: none;
+}
+ul.lst > li > div {
+  display: table;
+  width: 100%;
+  vertical-align: middle;
+}
+ul.lst > li > div > div {
+  display: table-cell;
+  padding: 5px 10px 5px 0;
+  vertical-align: middle;
+}
+ul.lst > li > div > div:first-child {
+  padding-left: 10px;
+}
 
 /* bootstrap overwrites */
 .tooltip {
@@ -413,6 +430,10 @@ input.input-thin {
   width: 16px;
   height: 16px;
 }
+ul.lst .progress {
+  margin-bottom: 0px;
+  height: 10px;
+}
 
 .errs li, .err {
   display: block;
@@ -424,6 +445,16 @@ input.input-thin {
   color: #FFFFFF;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   box-shadow: inset 1px 1px 1px rgba(0,0,0,0.3), inset 1px -1px 1px rgba(255,255,255,0.7);
+}
+
+.blst {
+}
+.blst > li {
+  display: block;
+  border-bottom: 1px solid #CCCCCC;
+}
+.dropdown-menu .btn {
+  font-size: 11px;
 }
 
 /* bootstrap done */
@@ -524,3 +555,21 @@ input.input-thin {
 .fntc-gr { color: #999999 !important; }
 
 .trn50 { opacity:0.5; filter:alpha(opacity=50); }
+
+select.inp-l, textarea.inp-l, input[type="text"].inp-l, input[type="password"].inp-l, input[type="datetime"].inp-l, input[type="datetime-local"].inp-l, input[type="date"].inp-l, input[type="month"], input[type="time"].inp-l, input[type="week"].inp-l, input[type="number"].inp-l, input[type="email"].inp-l, input[type="url"].inp-l, input[type="search"].inp-l, input[type="tel"].inp-l, input[type="color"].inp-l, .uneditable-input.inp-l {
+  padding: 10px 10px;  
+  font-size: 14px;
+}
+
+.fixed-top {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+.fixed-bottom {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}

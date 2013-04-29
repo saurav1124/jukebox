@@ -1,0 +1,48 @@
+<% @title = t("label.library") %>
+<% content_for :left_nav do %>
+<div class="disbl pt10">
+<ul class="nav nav-list">
+  <li class="nav-header"><%= t("label.playlists") %></li>
+  <% @playlists.each do |pl| %>
+  <%= render "playlists/lm_item", :pl => pl %>
+  <% end %>
+  <li><a href="" class="add-new-pl fntc-gr"><i class="icon-small icon-plus trn50"></i> <%= t("label.new_playlist") %></a>
+    <%= form_tag add_new_playlists_path do %>
+    <%= text_field_tag :name, nil, :placeholder => t("label.enter_playlist_name"), :id => "new_pl_name", :class => "input-thin", :style => "width:170px;display:none;margin-bottom:0;" %>
+    <% end %>
+  </li>
+</ul>
+</div>
+<div class="disbl pt10">
+<ul class="nav nav-list">
+  <li class="nav-header"><%= t("label.albums") %></li>
+  <% @albums.each do |album| %>
+  <li><a id="ln<%= album.uqid %>" data-id="<%= album.uqid %>" data-title="<%= album.name %>" href="<%= tracks_album_path(album.uqid) %>" class="lnav-menu"><i class="icon-small icon-album"></i> <%= album.name %></a></li>
+  <% end %>
+</ul>
+</div>
+<script>
+$(document).ready(function() {
+  $(".add-new-pl").click(function() {
+    $(".add-new-pl").hide();
+    $("#new_pl_name").show();
+    return false;
+  });
+  $("#new_pl_name").blur(function() {
+    var f = $(this).closest("form");
+    var fld = $(this);
+    $.ajax({
+      url: f.attr("action"),
+      data: f.serialize(),
+      type: "POST",
+      headers: { 'X-CSRF-Token': '<%= form_authenticity_token.to_s %>' },
+      success: function(data) {
+        fld.closest("li").before(data);
+        $(".add-new-pl").show();
+        fld.hide();
+      }
+    });
+  });
+});
+</script>
+<% end %>

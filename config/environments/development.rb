@@ -37,6 +37,16 @@ Jukebox::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "email-smtp.us-east-1.amazonaws.com",
+    :port                 => 465,
+    :domain               => 'miliea.com',
+    :user_name            => 'AKIAJ6PONYURJSOSGT4A',
+    :password             => 'AmGPJNvtOpBDQJLuvUIQ/mf2t09LktT/um1W0A0TYkJK',
+    :authentication       => :login
+  }
+
   APP_CONFIG = YAML.load_file("#{Rails.root}/config/config.yml")[Rails.env]
 
   # AWS::S3::Base.establish_connection!(:access_key_id => "123",

@@ -39,7 +39,7 @@ class TracksController < ApplicationController
   def index
     @tmenu = "tracks"
     @albums = Album.all(
-      :include => "tracks",
+      :include => ["artwork", "tracks", "artists"],
       :conditions => ["albums.user_id = ?", current_user.id],
       :order => "albums.name"
     )
@@ -51,6 +51,37 @@ class TracksController < ApplicationController
         format.html # index.html.erb
         format.json { render json: @tracks }
       end
+    end
+  end
+  
+  def upload
+    @track = Track.new
+    render "tracks/upload", :layout => "blank"
+  end
+  
+  def import
+    @track = Track.new(params[:track])
+    @track.ectract_metadata
+    fp = @track.gen_fingerprint
+    @db_track = Track.where("user_id = ? and fingerprint = ?", current_user.id, fp)
+    saved = false
+    if track != nil
+      saved = @db_track.update_attributes(params[:track])
+    else
+      saved = @track.save
+    end
+    @track.user_id = current_user.id
+    if saved
+      json_data = {
+        "name" => @track.attributes[:media_file_name],
+        "size" => @track.attributes[:media_file_size],
+        "url" => @track.media.url(:original),
+        "delete_url" => track_path(@track),
+        "delete_type" => "DELETE" 
+      }
+      render json: json_data
+    else
+      render json: @track.errors, status: :unprocessable_entity
     end
   end
 

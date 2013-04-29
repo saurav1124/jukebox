@@ -12,4 +12,22 @@ module UsersHelper
     Track.limit(40)
   end
 
+  def my_friend_requests
+    FriendRequest.where("status = ?", FriendRequest::STATUS_PENDING).order("created_at desc")
+  end
+
+  def get_friends(user_id)
+    Friend.all(
+      :include => ["user"],
+      :conditions => ["me_id = ?", user_id],
+      :order => "users.name"
+    )
+  end
+  
+  def make_friend(req)
+    Friend.create(:me_id => current_user.id, :user_id => req.from_user_id, :status => FriendRequest::STATUS_ACCEPTED)
+    Friend.create(:me_id => req.from_user_id, :user_id => current_user.id, :status => FriendRequest::STATUS_ACCEPTED)
+    req.destroy
+  end
+
 end

@@ -1,0 +1,15 @@
+<% containerPrinted = false %>
+<% objects.each do |obj| %>
+  <% if obj.errors.any? %>
+    <% obj.errors.each do |attr,msg| %>
+      <% if !containerPrinted %>
+      <div class="mg error <%= @customMessagesClass %>">
+      <% containerPrinted = true %>
+      <% end %>
+      <span><%= msg %></span>
+    <% end %>
+  <% end %>
+<% end %>
+<% if containerPrinted %>
+</div>
+<% end %>

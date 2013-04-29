@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
 
+  include ApplicationHelper
+  include ModelHelper
+  include UsersHelper
+
   protect_from_forgery
 
   layout :resolve_layout
@@ -11,7 +15,13 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    home_path
+    library_path
+  end
+
+protected
+
+  def set_top_flash(msg)
+    flash[:top_flash] = msg
   end
 
 private

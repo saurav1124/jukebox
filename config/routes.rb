@@ -1,10 +1,21 @@
 Jukebox::Application.routes.draw do
 
-  devise_for :users do
+  devise_for :users, :controllers => {
+    :registrations => "users/registrations" } do
     get 'signout' => 'devise/sessions#destroy'
   end
 
-  resources :users
+  match '/accept_friend', :to => 'users#accept_friend'
+  match '/accept_friend/:id', :to => 'users#accept_friend'
+
+  resources :users do
+    collection do
+      get :friend_requests
+      get :check_friend_request
+    end
+    member do
+    end
+  end
 
   resources :releases
 
@@ -17,6 +28,10 @@ Jukebox::Application.routes.draw do
   end
 
   resources :tracks, :path => "songs" do
+    collection do
+      get   :upload
+      post  :import
+    end
     member do
       get   :details
     end
@@ -46,8 +61,11 @@ Jukebox::Application.routes.draw do
   match '/account/password', :to => 'account#password'
   match '/account/photo', :to => 'account#photo'
   match '/account/friends', :to => 'account#friends'
+  match '/account/invite_friend', :to => 'account#invite_friend'
 
   match '/request_invite', :to => "pages#request_invite"
+  match '/accept_invite', :to => "pages#accept_invite"
+  match '/accept_invite/:token', :to => "pages#accept_invite"
   match '/home', :to => 'pages#home'
   match '/thanks', :to => 'pages#thanks'
   match '/library', :to => 'pages#home'

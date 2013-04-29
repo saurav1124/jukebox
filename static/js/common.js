@@ -9,7 +9,19 @@ var jkCommon = new (function() {
     $('.tipno').removeAttr('title');
     $(".topm .sch input").focus(function() {
       $(this).animate({ width: "200px" })
-    })
+    });
+    $("#tmn_fr_dd").click(function() {
+      $.ajax({
+        url: "/users/friend_requests",
+        success: function(data) {
+          $("#tmn_fr_ddc").html(data);
+        }
+      });
+    });
+    $(".import-music").click(function() {
+      jkCommon.openImportPopup($(this));
+      return false;
+    });
   };
   this.initAjax = function() {
     $(".topfsh .close").click(function() {
@@ -17,6 +29,9 @@ var jkCommon = new (function() {
       return false;
     });
   };
+  this.exist = function(selector) {
+    return $(selector).length > 0;
+  }
   this.playFirstTrack = function() {
     $(".trkcont li:first-child .play-track").click();
   };
@@ -31,7 +46,7 @@ var jkCommon = new (function() {
     setTimeout(function() { $(".topfsh").slideUp(); }, 5000 );
   };
   this.setPageTitle = function(title) {
-  	document.title = title + " - Miliea";
+  	document.title = "jk : " + title + " - Miliea";
   };
   this.addHash = function(idx, str) {
   	var currHash = location.hash.split('!');
@@ -141,5 +156,34 @@ var jkCommon = new (function() {
         jkCommon.playHashTrack();
       }
     });
+  };
+  this.checkFriendRequest = function() {
+    $.ajax({
+      url: "/users/check_friend_request",
+      success: function(data) {
+        if (data.count > 0) {
+          $("#tmn_fr_cnt").text(data.count);
+          $("#tmn_fr_cnt").fadeIn();
+        } else {
+          $("#tmn_fr_cnt").fadeOut();
+          $("#tmn_fr_cnt").closest(".dropdown").find(".dropdown-menu .hdr").addClass("nobg");
+        }
+        $(".fr-cnt").text(data.label);
+      }
+    })
+  };
+  this.openImportPopup = function(elem) {
+    window.open(elem.attr("href"),
+                'popUpWindow',
+                'height=500,width=500,left=200,top=100,resizable=no,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no, status=no');
+    return false;
+  };
+  this.nameToId = function(name) {
+    var n = name.split(' ').join('_');
+    n = n.split(".").join("_");
+    n = n.split("-").join("_");
+    n = n.split("(").join("_");
+    n = n.split(")").join("_");
+    return n;
   }
 });

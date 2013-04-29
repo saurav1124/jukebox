@@ -49,6 +49,16 @@
   </div>
   <% if user_signed_in? %>
   <div class="topm">
+    <div class="lmn">
+      <a href="<%= upload_tracks_path %>" class="btn btn-inverse upb mr10 import-music"><%= t("label.import_music") %>
+      </a><div class="dropdown disib">
+        <a id="tmn_fr_dd" class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i><label id="tmn_fr_cnt" class="badge hide">5</label></a>
+        <div class="dropdown-menu" role="menu">
+          <div class="hdr"><%= raw t("txt.friend_requests", :count => "<span class=\"fr-cnt\"></span>")%></div>
+          <div id="tmn_fr_ddc"></div>
+        </div>
+      </div>
+    </div>
     <ul class="mns">
       <li class="<%= @tmenu == "library" ? "active" : "" %>"><a href="<%= library_url %>" class="mn-menu"><%= t("label.library") %></a></li>
       <li class="<%= @tmenu == "tracks" ? "active" : "" %>"><a href="<%= tracks_url %>" class="mn-menu"><%= t("label.tracks") %></a></li>
@@ -93,11 +103,16 @@ $(document).ready(function() {
         $(".mn-menu").closest("li").removeClass("active");
         menu.closest("li").addClass("active");
         jkCommon.setPageTitle(menu.text());
-        window.location.replace(menu.attr("href"));
       }
     });
     return false;
   });
+  <% if flash[:top_flash] %>
+  jkCommon.showTopFlash("<%= flash[:top_flash] %>");
+  <% end %>
+  <% if user_signed_in? %>
+  jkCommon.checkFriendRequest();
+  <% end %>
 });
 $(document).bind("ready ajaxComplete", function() {
   <% if user_signed_in? %>

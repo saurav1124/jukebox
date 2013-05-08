@@ -52,10 +52,16 @@
     <div class="lmn">
       <a href="<%= upload_tracks_path %>" class="btn btn-inverse upb mr10 import-music"><%= t("label.import_music") %>
       </a><div class="dropdown disib">
-        <a id="tmn_fr_dd" class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i><label id="tmn_fr_cnt" class="badge hide">5</label></a>
+        <a id="tmn_fr_dd" class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i><label id="tmn_fr_cnt" class="badge hide">0</label></a>
         <div class="dropdown-menu" role="menu">
           <div class="hdr"><%= raw t("txt.friend_requests", :count => "<span class=\"fr-cnt\"></span>")%></div>
           <div id="tmn_fr_ddc"></div>
+        </div>
+      </div><div class="dropdown disib ml10">
+        <a id="tmn_shared_dd" class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-album"></i><label id="tmn_shared_cnt" class="badge">0</label></a>
+        <div class="dropdown-menu" role="menu">
+          <div class="hdr"><%= raw t("txt.friend_requests", :count => "<span class=\"fr-cnt\"></span>")%></div>
+          <div id="tmn_shared_ddc"></div>
         </div>
       </div>
     </div>

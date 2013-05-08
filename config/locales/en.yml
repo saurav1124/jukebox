@@ -24,7 +24,7 @@ en:
     browse: Browse
     profile: Profile
     delete: Delete
-    more: More ...
+    more: More...
     email: Email
     password: Password
     signup_here: "Sign up here!"
@@ -51,28 +51,30 @@ en:
     photo: Photo
     friends: Friends
     send_invite: Send Invitation
+    invite_friends: Invite Friends
     confirm: Confirm
     accept: Accept
     zero_no: "No"
     upload_music: Upload Music
     import_music: Import your music
-    add_files: Add files ...
+    add_files: Add files...
+    search_friends: Search friends...
   counts:
     tracks:
       one: "%{count} song"
       other: "%{count} songs"
   txt:
     home_1: "Share music with friends"
-    home_2: "and find out what they are listening to ..."
+    home_2: "and find out what they are listening to..."
     req_invite: "Request an invitation to join Miliea or"
     req_friend: "ask a friend to send you an invitation."
     req_send: "Send me invitation"
     slogan: "Music. Melody. Moment."
-    caption: "What's on your mind? Let us play it for you ..."
-    search_prompt: "e.g. Latest, Top 10, Kishore, Aashiq ..."
+    caption: "What's on your mind? Let us play it for you..."
+    search_prompt: "e.g. Latest, Top 10, Kishore, Aashiq..."
     no_acc: "Don't have an account?"
     create_acc: "Create an account. Its FREE!"
-    forgot_pass: "Forgot your password? You are not the first one ..."
+    forgot_pass: "Forgot your password? You are not the first one..."
     forgot_pass_msg: "To reset your password enter your email address below and we will send you instructions on how to create a new password."
     welcome_back: Welcome Back to Miliea!
     thank_you: Thank You
@@ -88,6 +90,11 @@ en:
     win_close_upload: "Do not close this window while your music is being uploaded."
     select_files_disk: "Select files from your disk."
     drag_drop_files: "You can also drag and drop the files into this window."
+    invite_friends: Invite your friends to join Miliea and share their music with you...
+    enter_emails_commas: Enter emails seperated by commas...
+    emails_not_shared: WE WILL NOT SHARE THESE EMAILS WITH ANYONE.
+    search_friends: "Search for friends who are already using Miliea to share music..."
+    people_know: People you might know
   playlists:
     favorites: My Favorites
     recently_played: Recently Played

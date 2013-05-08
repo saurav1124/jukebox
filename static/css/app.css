@@ -314,6 +314,9 @@ body {
   z-index: 100;
   padding-bottom: 20px;
 }
+.rtp {
+  width: 250px;
+}
 .th .trk {
   display: table-cell;
   width: 78px;
@@ -637,4 +640,46 @@ ul.polnks li a:hover {
   direction: ltr;
   cursor: pointer;
 }
-
+.p {
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.p .h {
+  border-bottom: 1px solid #DDDDDD;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1em;
+}
+ul.sch-lst {
+}
+ul.sch-lst li {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #DDDDDD;
+  border-left: 1px solid #DDDDDD;
+  border-right: 1px solid #DDDDDD;
+  padding: 5px 10px 6px;
+}
+ul.sch-lst li > .sch-cont {
+  padding-right: 36px;
+}
+ul.sch-lst li input {
+  border-radius: 4px 4px 0 0;
+  background-image: url(../images/icons/search.png);
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: 5px 4px;
+  padding-left: 30px;
+}
+ul.sch-lst li:first-child {
+  border: none;
+  padding: 0;
+}
+ul.sch-lst li:last-child input {
+  border-radius: 4px 4px 4px 4px;
+}
+ul.sch-lst li:last-child {
+  border-radius: 0 0 4px 4px;
+}

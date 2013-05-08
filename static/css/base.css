@@ -6,6 +6,11 @@ body {
   color: #333333;
   line-height: 1.3em;
 }
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  padding-left: 4px;  
+  padding-right: 4px;  
+}
+textarea{resize: none}
 h1, h2, h3, h4 { padding: 0; margin: 0; }
 h1 { font-size: 24px; }
 h2 { font-size: 20px; }
@@ -476,6 +481,9 @@ ul.lst .progress {
 .tar { text-align: right; }
 .mau { margin: auto; }
 
+.p0 { padding: 0px !important; }
+.m0 { margin: 0px !important; }
+
 .p10 { padding: 10px; }
 .p20 { padding: 20px; }
 .p30 { padding: 30px; }
@@ -537,6 +545,8 @@ ul.lst .progress {
 .fntw-b { font-weight: bold; }
 
 .fntc-gr { font-color: #999999; }
+
+.fntw-b { font-weight: bold; }
 
 .bdrt { border-top: 1px solid #D4D5D5; }
 .bdrr { border-right: 1px solid #D4D5D5; }

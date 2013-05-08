@@ -2,11 +2,71 @@
 <%= content_for :left_nav do %>
   <%= render "account/menu", :lmenu => "friends" %>
 <% end %>
-  <div class="disbl p30">
-    <%= form_tag account_invite_friend_path, :class => "form-inline" do %>
-    <%= text_field_tag :emails, nil %><%= submit_tag t("label.send_invite"), :class => "btn btn-primary ml10" %>
-    <% end %>
+<% friends = get_friends(current_user.id) %>
+<% if friends.count > 0 %>
+<div class="disbl p10 bg-w bdrb">
+<div class="disib"><%= text_field_tag :q, nil, :class => "span4 m0", :placeholder => t("label.search_friends") %>
+</div><div class="disib pull-right"><a href="#" class="btn btn-primary m0"><%= t("label.invite_friends") %>...</a>
+</div></div>
+<div class="distb">
+  <div class="distc w100">
   </div>
-<% if @friends.count == 0 %>
+  <div class="distc rtp bdrl">
+  </div>
+</div>
 <% else %>
+<div class="distb w100" style="min-height:500px;">
+  <div class="distc w100 p20 vat">
+    <div class="p">
+      <div class="h"><%= t("txt.search_friends") %></div>
+      <div class="disbl p20">
+        <ul class="sch-lst">
+        <li><div class="disbl sch-cont">
+          <%= text_field_tag :q, nil, :id => "us_fld", :class => "w100 m0" %>
+        </div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="p mt20">
+      <div class="h"><%= t("txt.invite_friends") %></div>
+      <div class="disbl p20">
+      <%= form_tag account_invite_friend_path do %>
+        <div class="disbl pr10">
+          <%= text_area_tag :emails, nil, :class => "w100", :style => "height:50px;", :placeholder => t("txt.enter_emails_commas") %>
+        </div>
+        <div class="distb w100">
+          <div class="distc w100 vam">
+            <span class="disbl"><%= t("txt.emails_not_shared") %></span>
+          </div>
+          <div class="distc pl20 vam">
+            <%= submit_tag t("label.send_invite"), :class => "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="distc bdrl bg-w vat">
+    <div class="disbl rtp">
+      <div class="disbl bdrb p10 fntw-b"><%= t("txt.people_know")%>
+    </div>
+  </div>
+</div>
 <% end %>
+<script>
+$(document).ready(function() {
+  $("#us_fld").keyup(function() {
+    console.log("search");
+    var term = $(this).val();
+    if (term.length > 2) {
+      $.ajax({
+        url: "<%= search_users_path %>?q=" + term,
+        success: function(data) {
+          $(".us-row").remove();
+          $(".sch-lst").append(data);
+        }
+      });
+    }
+  });
+});
+</script>

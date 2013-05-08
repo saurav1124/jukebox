@@ -12,6 +12,7 @@ Jukebox::Application.routes.draw do
     collection do
       get :friend_requests
       get :check_friend_request
+      get :search
     end
     member do
     end

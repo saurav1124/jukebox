@@ -35,6 +35,11 @@ class User < ActiveRecord::Base
     ["friends_listening", 36, Playlist::TYPE_FRIENDS_PLAYED]
   ]
   
+  searchable :ignore_attribute_changes_of => [] do
+    text      :name,                  :as => "name"
+    date      :created_at,            :as => "created_at"
+  end
+
   def display_name
     self.name
   end
